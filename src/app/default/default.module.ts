@@ -6,9 +6,11 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [DefaultComponent],
+  declarations: [DefaultComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     RouterModule,
