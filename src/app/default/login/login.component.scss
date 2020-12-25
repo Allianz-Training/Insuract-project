@@ -1,0 +1,55 @@
+section {
+  background-color: #007bff;
+  height: 100vh;
+  overflow: hidden;
+
+  .container {
+    margin-top: 60px;
+    padding: 60px 100px;
+
+    #popup {
+      background-color: #ffffff;
+      height: 80vh;
+      border-radius: 5px;
+
+      #popup__left {
+        padding: 20px;
+
+        .divider {
+          border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+        }
+
+        h1 {
+          margin: 30px 0 5px 0px;
+        }
+        
+        
+      }
+
+      #popup__right {
+        background: url("../../../assets/img01.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  section {
+    // background-color: #ffffff;
+    height: 100vh;
+    .container {
+      position: relative;
+      top: 20px;
+      padding: 0;
+
+      #popup__left {
+        padding: 10px;
+      }
+    }
+  }
+}

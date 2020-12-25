@@ -8,12 +8,15 @@ nav {
   box-sizing: border-box;
   transition: 0.5s;
   z-index: 100;
+  background-color: #262626;
 
-  #logo {
+  #logo > a {
     float: left;
     line-height: 60px;
     transition: 0.5s;
     font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    color: #ffffff;
     font-weight: 900;
     font-size: 1.5em;
   }
@@ -30,7 +33,7 @@ nav {
 
       a {
         line-height: 60px;
-        color: #262626;
+        color: #ffffff;
         padding: 5px 20px;
         text-decoration: none;
         text-transform: uppercase;
@@ -48,18 +51,6 @@ nav {
         background-color: #262626;
       }
     }
-  }
-}
-
-nav.black {
-  background: rgb(0, 0, 0, 0.9);
-
-  #logo {
-    color: #ffffff;
-  }
-
-  ul > li > a {
-    color: #ffffff;
   }
 }
 

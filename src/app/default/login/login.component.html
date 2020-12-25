@@ -1,1 +1,18 @@
-<p>login works!</p>
+<app-header></app-header>
+<section>
+  <div class="container">
+    <div id="popup" fxLayout="row">
+      <div id="popup__left" fxFlex="40" fxFlex.lt-md="100">
+        <h1>Login to your account</h1>
+        <div class="divider"></div>
+        <mat-form-field appearance="outline">
+          <mat-label>Outline form field</mat-label>
+          <input matInput placeholder="Placeholder" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+      </div>
+      <div id="popup__right" fxFlex="60" fxHide.lt-md></div>
+    </div>
+  </div>
+</section>
