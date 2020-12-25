@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap");
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 0px 300px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  z-index: 100;
+
+  #logo {
+    float: left;
+    line-height: 60px;
+    transition: 0.5s;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-size: 1.5em;
+  }
+
+  ul {
+    float: right;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+      margin: 0px 5px;
+
+      a {
+        line-height: 60px;
+        color: #262626;
+        padding: 5px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: 0.5s;
+      }
+
+      button {
+        margin-top: 10px;
+        background-color: #007bff;
+      }
+
+      a.active,
+      a:hover {
+        color: #ffffff;
+        background-color: #262626;
+      }
+    }
+  }
+}
+
+nav.black {
+  background: rgb(0, 0, 0, 0.9);
+
+  #logo {
+    color: #ffffff;
+  }
+
+  ul > li > a {
+    color: #ffffff;
+  }
+}
+
+.responsive__button {
+  float: right;
+  margin: 10px 0;
+  background-color: #007bff;
+}
+
+::ng-deep.mat-menu-panel {
+  max-width: none !important;
+  width: 400px;
+  margin-top: 19px;
+  background: #007bff;
+}
+
+@media only screen and (max-width: 1280px) {
+  nav {
+    padding: 10px 100px;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  nav {
+    padding: 10px 20px;
+  }
+}

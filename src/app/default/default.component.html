@@ -1,0 +1,61 @@
+<script
+  type="text/javascript"
+  src="https://code.jquery.com/jquery-3.5.1.js"
+></script>
+<header>
+  <nav>
+    <div id="logo">Insuract</div>
+    <ul fxHide.lt-sm>
+      <li><a [routerLink]="['/insurance']" class="active">Home</a></li>
+      <li><a [routerLink]="['/insurance']">Insurance</a></li>
+      <li><a [routerLink]="['/insurance']">About-us</a></li>
+      <li><button mat-flat-button color="primary">Get Started</button></li>
+    </ul>
+    <button
+      mat-mini-fab
+      color="primary"
+      class="responsive__button"
+      [matMenuTriggerFor]="menu"
+      fxHide.gt-xs
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>home</mat-icon>
+        <span>Homepage</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>book</mat-icon>
+        <span>Insurance</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>About-us</span>
+      </button>
+    </mat-menu>
+  </nav>
+
+  <section id="jumbotron">
+    <div id="carousel">
+      <div class="item">
+        <p class="title">Allianz</p>
+        <img src="../../assets/allianz.png" alt="" class="logo" />
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+          necessitatibus, tempora neque vero id temporibus nemo et quae amet,
+          quis laudantium voluptate? Aliquam expedita id eligendi iure hic eius
+          vel.
+        </p>
+      </div>
+    </div>
+  </section>
+</header>
+<body>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore dolorem
+    eos voluptatem quaerat aperiam corporis voluptatum ratione laudantium
+    nostrum minus quod quisquam modi error sed, quis voluptate labore quam
+    culpa!
+  </div>
+</body>
