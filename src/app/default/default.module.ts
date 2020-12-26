@@ -8,6 +8,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [DefaultComponent, LoginComponent, RegisterComponent],
@@ -17,6 +19,9 @@ import { RegisterComponent } from './register/register.component';
     SharedModule,
     MaterialModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
   ],
   exports: [DefaultComponent],
 })

@@ -56,8 +56,13 @@ nav {
 
 .responsive__button {
   float: right;
-  margin: 10px 0;
+  margin: 10px 5px;
   background-color: #007bff;
+}
+
+.mat-menu-item,
+.mat-icon {
+  color: #ffffff;
 }
 
 ::ng-deep.mat-menu-panel {

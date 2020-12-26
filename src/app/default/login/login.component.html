@@ -5,12 +5,84 @@
       <div id="popup__left" fxFlex="40" fxFlex.lt-md="100">
         <h1>Login to your account</h1>
         <div class="divider"></div>
-        <mat-form-field appearance="outline">
-          <mat-label>Outline form field</mat-label>
-          <input matInput placeholder="Placeholder" />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field>
+
+        <form [formGroup]="loginInfo" (ngSubmit)="onLogin()">
+          <!-- USERNAME INPUT START -->
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              placeholder="please enter your username"
+              formControlName="username"
+            />
+            <mat-icon
+              matSuffix
+              class="error"
+              *ngIf="
+                loginInfo.get('username')!.errors?.required &&
+                  loginInfo.get('username')!.touched;
+                else checked
+              "
+              >error</mat-icon
+            >
+            <ng-template #checked>
+              <mat-icon
+                matSuffix
+                class="check"
+                *ngIf="loginInfo.get('username')!.touched"
+                >check_circle</mat-icon
+              >
+            </ng-template>
+            <mat-error *ngIf="loginInfo.get('username')!.errors?.required"
+              >username should not be empty.</mat-error
+            >
+          </mat-form-field>
+          <!-- USERNAME INPUT END -->
+          <!-- PASSWORD INPUT START -->
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="please enter your password"
+              formControlName="password"
+              type="password"
+            />
+            <mat-icon
+              matSuffix
+              class="error"
+              *ngIf="
+                loginInfo.get('password')!.errors?.required &&
+                  loginInfo.get('password')!.touched;
+                else password__checked
+              "
+              >error</mat-icon
+            >
+            <ng-template #password__checked>
+              <mat-icon
+                matSuffix
+                class="check"
+                *ngIf="loginInfo.get('password')!.touched"
+                >check_circle</mat-icon
+              >
+            </ng-template>
+            <mat-error *ngIf="loginInfo.get('password')!.errors?.required"
+              >password should not be empty.</mat-error
+            >
+          </mat-form-field>
+          <!-- PASSWORD INPUT END -->
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!loginInfo.valid"
+          >
+            Login
+          </button>
+        </form>
+        <div id="linkto__register">
+          Don't have an account?
+          <a [routerLink]="['/register']">Create an Account.</a>
+        </div>
       </div>
       <div id="popup__right" fxFlex="60" fxHide.lt-md></div>
     </div>
