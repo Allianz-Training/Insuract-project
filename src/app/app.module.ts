@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DefaultModule } from './default/default.module';
 import { SharedModule } from './shared/shared.module';
@@ -20,6 +21,8 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     DefaultModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

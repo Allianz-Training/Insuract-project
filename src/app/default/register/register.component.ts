@@ -30,8 +30,13 @@ export class RegisterComponent implements OnInit {
         ],
       ],
       telnum: ['', Validators.required],
+      telnum2: [''],
+      usertype: ['customer', Validators.required],
+      agentRef: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {}
+
+  // should have password confirmation
 }

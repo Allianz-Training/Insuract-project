@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap");
+
 section {
   background-color: rgb(236, 236, 236);
   height: 100vh;
-  overflow: hidden;
 
   .container {
     margin-top: 60px;
@@ -9,18 +10,31 @@ section {
 
     #popup {
       background-color: #ffffff;
-      height: 80vh;
+      //   height: 80vh;
       border-radius: 5px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+
+      #title {
+        margin: 0 auto;
+        padding: 30px;
+        font-family: "Roboto", sans-serif;
+        font-size: 2rem;
+      }
 
       form {
         display: flex;
         flex-direction: column;
         width: 40%;
         margin: auto;
+        padding: 20px 0;
+
+        p {
+          color: #007bff;
+        }
 
         button {
           width: 100%;
+          margin-top: 10px;
         }
 
         .error {
@@ -47,6 +61,14 @@ section {
             opacity: 1;
           }
         }
+
+        .full-width {
+          width: 100%;
+
+          td {
+            padding-right: 5px;
+          }
+        }
       }
     }
   }
@@ -63,6 +85,10 @@ section {
 
       #popup {
         height: 100vh;
+
+        form {
+          width: 100%;
+        }
       }
 
       #popup__left {
