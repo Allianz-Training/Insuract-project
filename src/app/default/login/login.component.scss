@@ -1,5 +1,5 @@
 section {
-  background-color: #007bff;
+  background-color: rgb(236, 236, 236);
   height: 100vh;
   overflow: hidden;
 
@@ -11,6 +11,7 @@ section {
       background-color: #ffffff;
       height: 80vh;
       border-radius: 5px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 
       #popup__left {
         padding: 20px;
@@ -88,6 +89,10 @@ section {
       top: 20px;
       padding: 0;
 
+      #popup {
+        height: 100vh;
+      }
+      
       #popup__left {
         padding: 10px;
       }
