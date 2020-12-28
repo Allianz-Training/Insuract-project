@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -21,22 +26,40 @@ export class RegisterComponent implements OnInit {
     this.personalForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
+      // custom validator for citizenID should contain only number
       citizenID: [
         '',
         [
           Validators.required,
           Validators.minLength(13),
           Validators.maxLength(13),
+          Validators.pattern(/^-?(0|[1-9]\d*)?$/),
         ],
       ],
-      telnum: ['', Validators.required],
-      telnum2: [''],
-      usertype: ['customer', Validators.required],
-      agentRef: ['', Validators.required],
+      telnum: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
+      telnum2: [
+        '',
+        [
+          Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
     });
   }
 
   ngOnInit(): void {}
 
-  // should have password confirmation
+  submitforms(): void {
+    console.warn(this.accountForm.value);
+    console.warn(this.personalForm.value);
+  }
 }

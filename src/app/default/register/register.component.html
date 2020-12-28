@@ -5,8 +5,7 @@
       <div id="title">Create your account</div>
       <mat-divider> </mat-divider>
       <!-- horizonal step form -->
-      <!-- don't forget to add "linear" back to stepper -->
-      <mat-horizontal-stepper #stepper fxHide.lt-sm>
+      <mat-horizontal-stepper linear #stepper fxHide.lt-sm>
         <mat-step [stepControl]="accountForm">
           <form [formGroup]="accountForm">
             <ng-template matStepLabel>Account information</ng-template>
@@ -135,6 +134,7 @@
                 >error</mat-icon
               >
               <ng-template #confirmpassword__checked>
+                <!-- don't forget to fix ngIf -->
                 <mat-icon
                   matSuffix
                   class="check"
@@ -166,13 +166,59 @@
                 <td>
                   <mat-form-field class="full-width">
                     <mat-label>Firstname</mat-label>
-                    <input matInput />
+                    <input matInput formControlName="firstname" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        personalForm.get('firstname')!.errors?.required &&
+                          personalForm.get('firstname')!.touched;
+                        else firstname__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #firstname__checked>
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('firstname')!.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('firstname')!.errors?.required"
+                      >please enter your firstname.</mat-error
+                    >
                   </mat-form-field>
                 </td>
                 <td>
                   <mat-form-field class="full-width">
                     <mat-label>Lastname</mat-label>
-                    <input matInput />
+                    <input matInput formControlName="lastname" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        personalForm.get('lastname')!.errors?.required &&
+                          personalForm.get('lastname')!.touched;
+                        else lastname__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #lastname__checked>
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('lastname')!.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('lastname')!.errors?.required"
+                      >please enter your lastname.</mat-error
+                    >
                   </mat-form-field>
                 </td>
               </tr>
@@ -184,8 +230,35 @@
                 matInput
                 #citizenID
                 placeholder="citizen id must have 13 characters."
+                formControlName="citizenID"
+                ng-pattern="/^[0-9]{1,13}$/"
               />
               <mat-hint align="end">{{ citizenID.value.length }} / 13</mat-hint>
+              <mat-icon
+                matSuffix
+                class="error"
+                *ngIf="
+                  (personalForm.get('citizenID')!.errors?.required &&
+                    personalForm.get('citizenID')!.touched) ||
+                    personalForm.get('citizenID')!.errors?.pattern;
+                  else citizenID__checked
+                "
+                >error</mat-icon
+              >
+              <ng-template #citizenID__checked>
+                <mat-icon
+                  matSuffix
+                  class="check"
+                  *ngIf="personalForm.get('citizenID')!.valid"
+                  >check_circle</mat-icon
+                >
+              </ng-template>
+              <mat-error *ngIf="personalForm.get('citizenID')!.errors?.required"
+                >please enter your citizen ID.</mat-error
+              >
+              <mat-error *ngIf="personalForm.get('citizenID')!.errors?.pattern"
+                >Citizen ID should contain only numbers</mat-error
+              >
             </mat-form-field>
 
             <table class="full-width" cellspacing="0">
@@ -193,36 +266,87 @@
                 <td>
                   <mat-form-field class="full-width">
                     <mat-label>Telephone number</mat-label>
-                    <input matInput type="tel" />
+                    <input matInput type="tel" formControlName="telnum" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        (personalForm.get('telnum')!.errors?.required &&
+                          personalForm.get('telnum')!.touched) ||
+                          personalForm.get('telnum')!.errors?.pattern;
+                        else telnum__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #telnum__checked>
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('telnum')!.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('telnum')!.errors?.required"
+                      >please enter your telephone number.</mat-error
+                    >
+                    <mat-error
+                      *ngIf="personalForm.get('telnum')!.errors?.pattern"
+                      >telephone number should only be number</mat-error
+                    >
+                    <mat-error
+                      *ngIf="personalForm.get('telnum')!.errors?.minlength"
+                      >telephone number should have 10 characters.</mat-error
+                    >
                   </mat-form-field>
                 </td>
                 <td>
                   <mat-form-field class="full-width">
                     <mat-label>Telephone number #2 (optional)</mat-label>
-                    <input matInput type="tel" />
+                    <input matInput type="tel" formControlName="telnum2" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        (personalForm.get('telnum2')!.errors?.pattern &&
+                          personalForm.get('telnum2')!.touched) ||
+                          personalForm.get('telnum2')!.errors?.minlength;
+                        else telnum2__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #telnum2__checked>
+                      <!-- known issue can't do a proper validation -->
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('telnum2')!.errors?.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('telnum2')!.errors?.pattern"
+                      >telephone number should only be number</mat-error
+                    >
+                    <mat-error
+                      *ngIf="personalForm.get('telnum2')!.errors?.minlength"
+                      >telephone number should have 10 characters.</mat-error
+                    >
                   </mat-form-field>
                 </td>
               </tr>
             </table>
 
-            <mat-divider> </mat-divider><br />
-
-            <mat-form-field>
-              <mat-select required>
-                <mat-option value="customer" selected>Customer</mat-option>
-                <mat-option value="agent">Insurance Agent</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <!-- implement ngIf when option agent is selected -->
-            <mat-form-field class="full-width">
-              <mat-label>Insurance Agent ID</mat-label>
-              <input matInput disabled value="00000000000" />
-            </mat-form-field>
-
             <div>
-              <button mat-raised-button color="primary" matStepperNext>
-                Next
+              <button
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                (click)="submitforms()"
+              >
+                Register
               </button>
               <button mat-raised-button matStepperPrevious>Back</button>
             </div>
@@ -230,17 +354,389 @@
         </mat-step>
 
         <mat-step>
-          <ng-template matStepLabel>Done!</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+          <ng-template matStepLabel>Done</ng-template>
+          <div id="lastStep">
+            <h1>You are all set!</h1>
+            <p>
+              We're sincerely thankful to you, our valuable customer for
+              choosing Insuract.
+            </p>
+
+            <div>
+              <button mat-raised-button [routerLink]="['/']" color="primary">
+                Back to Homepage
+              </button>
+            </div>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
       <!-- end of horizonal step form -->
       <!-- vertical step form start -->
+      <mat-vertical-stepper linear #stepper fxHide.gt-xs>
+        <mat-step [stepControl]="accountForm">
+          <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Account information</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="please enter your username"
+                formControlName="username"
+                type="text"
+                required
+              />
+              <mat-icon
+                matSuffix
+                class="error"
+                *ngIf="
+                  accountForm.get('username')!.errors?.required &&
+                    accountForm.get('username')!.touched;
+                  else checked
+                "
+                >error</mat-icon
+              >
+              <ng-template #checked>
+                <mat-icon
+                  matSuffix
+                  class="check"
+                  *ngIf="accountForm.get('username')!.valid"
+                  >check_circle</mat-icon
+                >
+              </ng-template>
+              <mat-error *ngIf="accountForm.get('username')!.errors?.required"
+                >username should not be empty.</mat-error
+              >
+            </mat-form-field>
+            <!-- USERNAME INPUT END -->
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="ex. hin@example.com"
+                formControlName="email"
+                type="email"
+                required
+              />
+              <mat-icon
+                matSuffix
+                class="error"
+                *ngIf="
+                  (accountForm.get('email')!.errors?.required &&
+                    accountForm.get('username')!.touched) ||
+                    (accountForm.get('email')!.errors?.email &&
+                      accountForm.get('username')!.touched);
+                  else email__checked
+                "
+                >error</mat-icon
+              >
+              <ng-template #email__checked>
+                <mat-icon
+                  matSuffix
+                  class="check"
+                  *ngIf="accountForm.get('email')!.valid"
+                  >check_circle</mat-icon
+                >
+              </ng-template>
+              <mat-error *ngIf="accountForm.get('email')!.errors?.required"
+                >email should not be empty.</mat-error
+              >
+              <mat-error *ngIf="accountForm.get('email')!.errors?.email"
+                >invalid email address.</mat-error
+              >
+            </mat-form-field>
+            <!-- EMAIL INPUT END -->
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                placeholder="password should be at least 6 characters"
+                formControlName="password"
+                type="password"
+                required
+              />
+              <mat-icon
+                matSuffix
+                class="error"
+                *ngIf="
+                  (accountForm.get('password')!.errors?.required &&
+                    accountForm.get('password')!.touched) ||
+                    accountForm.get('password')!.errors?.minlength;
+                  else password__checked
+                "
+                >error</mat-icon
+              >
+              <ng-template #password__checked>
+                <mat-icon
+                  matSuffix
+                  class="check"
+                  *ngIf="accountForm.get('password')!.valid"
+                  >check_circle</mat-icon
+                >
+              </ng-template>
+              <mat-error *ngIf="accountForm.get('password')!.errors?.required"
+                >password should not be empty.</mat-error
+              >
+              <mat-error *ngIf="accountForm.get('password')!.errors?.minlength"
+                >password should have at least 6 characters.</mat-error
+              >
+            </mat-form-field>
+            <!-- PASSWORD INPUT END -->
+            <mat-form-field appearance="outline">
+              <mat-label>Comfirm Password</mat-label>
+              <input
+                matInput
+                placeholder="confirm password should matched with password"
+                formControlName="confirmpassword"
+                type="password"
+                required
+              />
+              <mat-icon
+                matSuffix
+                class="error"
+                *ngIf="
+                  accountForm.get('confirmpassword')!.errors?.required &&
+                    accountForm.get('password')!.touched;
+                  else confirmpassword__checked
+                "
+                >error</mat-icon
+              >
+              <ng-template #confirmpassword__checked>
+                <!-- don't forget to fix ngIf -->
+                <mat-icon
+                  matSuffix
+                  class="check"
+                  *ngIf="accountForm.errors?.mismatch === false"
+                  >check_circle</mat-icon
+                >
+              </ng-template>
+              <mat-error
+                *ngIf="accountForm.get('confirmpassword')!.errors?.required"
+                >confirm password should not be empty.</mat-error
+              >
+              <!-- should have password confirmation validator here -->
+            </mat-form-field>
+            <!-- CONFIRM PASSWORD INPUT END -->
+            <div>
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-step>
 
+        <mat-step [stepControl]="personalForm">
+          <form [formGroup]="personalForm">
+            <ng-template matStepLabel>Personal information</ng-template>
+
+            <table class="full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="full-width">
+                    <mat-label>Firstname</mat-label>
+                    <input matInput formControlName="firstname" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        personalForm.get('firstname')!.errors?.required &&
+                          personalForm.get('firstname')!.touched;
+                        else firstname__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #firstname__checked>
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('firstname')!.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('firstname')!.errors?.required"
+                      >please enter your firstname.</mat-error
+                    >
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width">
+                    <mat-label>Lastname</mat-label>
+                    <input matInput formControlName="lastname" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        personalForm.get('lastname')!.errors?.required &&
+                          personalForm.get('lastname')!.touched;
+                        else lastname__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #lastname__checked>
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('lastname')!.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('lastname')!.errors?.required"
+                      >please enter your lastname.</mat-error
+                    >
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
+            <mat-form-field class="full-width">
+              <mat-label>Citizen ID.</mat-label>
+              <input
+                matInput
+                #citizenID
+                placeholder="citizen id must have 13 characters."
+                formControlName="citizenID"
+                ng-pattern="/^[0-9]{1,13}$/"
+              />
+              <mat-hint align="end">{{ citizenID.value.length }} / 13</mat-hint>
+              <mat-icon
+                matSuffix
+                class="error"
+                *ngIf="
+                  (personalForm.get('citizenID')!.errors?.required &&
+                    personalForm.get('citizenID')!.touched) ||
+                    personalForm.get('citizenID')!.errors?.pattern;
+                  else citizenID__checked
+                "
+                >error</mat-icon
+              >
+              <ng-template #citizenID__checked>
+                <mat-icon
+                  matSuffix
+                  class="check"
+                  *ngIf="personalForm.get('citizenID')!.valid"
+                  >check_circle</mat-icon
+                >
+              </ng-template>
+              <mat-error *ngIf="personalForm.get('citizenID')!.errors?.required"
+                >please enter your citizen ID.</mat-error
+              >
+              <mat-error *ngIf="personalForm.get('citizenID')!.errors?.pattern"
+                >Citizen ID should contain only numbers</mat-error
+              >
+            </mat-form-field>
+
+            <table class="full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <mat-form-field class="full-width">
+                    <mat-label>Telephone number</mat-label>
+                    <input matInput type="tel" formControlName="telnum" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        (personalForm.get('telnum')!.errors?.required &&
+                          personalForm.get('telnum')!.touched) ||
+                          personalForm.get('telnum')!.errors?.pattern;
+                        else telnum__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #telnum__checked>
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('telnum')!.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('telnum')!.errors?.required"
+                      >please enter your telephone number.</mat-error
+                    >
+                    <mat-error
+                      *ngIf="personalForm.get('telnum')!.errors?.pattern"
+                      >telephone number should only be number</mat-error
+                    >
+                    <mat-error
+                      *ngIf="personalForm.get('telnum')!.errors?.minlength"
+                      >telephone number should have 10 characters.</mat-error
+                    >
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width">
+                    <mat-label>Telephone number #2 (optional)</mat-label>
+                    <input matInput type="tel" formControlName="telnum2" />
+
+                    <mat-icon
+                      matSuffix
+                      class="error"
+                      *ngIf="
+                        (personalForm.get('telnum2')!.errors?.pattern &&
+                          personalForm.get('telnum2')!.touched) ||
+                          personalForm.get('telnum2')!.errors?.minlength;
+                        else telnum2__checked
+                      "
+                      >error</mat-icon
+                    >
+                    <ng-template #telnum2__checked>
+                      <!-- known issue can't do a proper validation -->
+                      <mat-icon
+                        matSuffix
+                        class="check"
+                        *ngIf="personalForm.get('telnum2')!.errors?.valid"
+                        >check_circle</mat-icon
+                      >
+                    </ng-template>
+                    <mat-error
+                      *ngIf="personalForm.get('telnum2')!.errors?.pattern"
+                      >telephone number should only be number</mat-error
+                    >
+                    <mat-error
+                      *ngIf="personalForm.get('telnum2')!.errors?.minlength"
+                      >telephone number should have 10 characters.</mat-error
+                    >
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+
+            <div>
+              <button
+                mat-raised-button
+                color="primary"
+                matStepperNext
+                (click)="submitforms()"
+              >
+                Register
+              </button>
+              <button mat-raised-button matStepperPrevious>Back</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <div id="lastStep">
+            <h1>You are all set!</h1>
+            <p>
+              We're sincerely thankful to you, our valuable customer for
+              choosing Insuract.
+            </p>
+
+            <div>
+              <button mat-raised-button [routerLink]="['/']" color="primary">
+                Back to Homepage
+              </button>
+            </div>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
       <!-- end of vertical stepper -->
     </div>
   </div>

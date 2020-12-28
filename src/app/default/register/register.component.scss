@@ -74,6 +74,12 @@ section {
   }
 }
 
+#lastStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @media only screen and (max-width: 1280px) {
   section {
     // background-color: #ffffff;
