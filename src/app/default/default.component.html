@@ -6,9 +6,9 @@
   <nav>
     <div id="logo"><a [routerLink]="['/']">Insuract</a></div>
     <ul fxHide.lt-sm>
-      <li><a [routerLink]="['/insurance']" class="active">Home</a></li>
+      <li><a [routerLink]="['/']" class="active">Home</a></li>
       <li><a [routerLink]="['/insurance']">Insurance</a></li>
-      <li><a [routerLink]="['/insurance']">About-us</a></li>
+      <li><a [routerLink]="['/about']">About-us</a></li>
       <li>
         <button mat-flat-button color="primary" [routerLink]="['/login']">
           Get Started
@@ -53,9 +53,14 @@
 
   <section id="jumbotron"></section>
   <div id="jumbotron__popup">
-    
+    <div id="popup__left">left</div>
+    <div id="popup__right">right</div>
   </div>
 </header>
 <body>
   <app-carousel></app-carousel>
+  <div>555</div>
 </body>
+<footer>
+  <app-footer></app-footer>
+</footer>

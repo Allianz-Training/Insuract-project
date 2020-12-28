@@ -51,7 +51,7 @@ nav {
       a.active,
       a:hover {
         color: #ffffff;
-        background-color: #262626;
+        background-color: #e95f28;
       }
     }
   }
@@ -107,6 +107,8 @@ section#jumbotron {
   width: 70%;
   height: 70vh;
   border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 body {
