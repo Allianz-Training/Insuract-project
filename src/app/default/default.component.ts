@@ -7,6 +7,9 @@ import * as $ from 'jquery';
   styleUrls: ['./default.component.scss'],
 })
 export class DefaultComponent implements OnInit {
+  insurance: string = '';
+  price: number = 1000;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -17,5 +20,21 @@ export class DefaultComponent implements OnInit {
         $('nav').removeClass('black');
       }
     });
+  }
+
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
+
+  selectCategory(c: string): void {
+    this.insurance = c;
+  }
+
+  updateResult() {
+    
   }
 }

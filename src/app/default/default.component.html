@@ -53,7 +53,69 @@
 
   <section id="jumbotron"></section>
   <div id="jumbotron__popup">
-    <div id="popup__left">left</div>
+    <div id="popup__left">
+      <h1>Try it now!</h1>
+      <p>try out our minified insurace browsing website.</p>
+      <p>
+        we have wide range of product to choose from. type of insurance,
+        <br />cheap or expensive budget, coverages, and many more!
+      </p>
+
+      <div id="minified__filter">
+        <h2>
+          Im looking for {{ insurance }}
+          <span *ngIf="this.insurance">insurance.</span>
+        </h2>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <button
+            mat-flat-button
+            id="health"
+            color="primary"
+            (click)="selectCategory('health')"
+          >
+            Health insurance
+          </button>
+          <button
+            mat-flat-button
+            id="retirement"
+            color="accent"
+            (click)="selectCategory('retirement')"
+          >
+            Retirement insurance
+          </button>
+          <button
+            mat-flat-button
+            id="motor"
+            color="warn"
+            (click)="selectCategory('motor')"
+          >
+            Motor insurance
+          </button>
+        </div>
+
+        <h2>I'd be happy to pay {{ price }} per month</h2>
+        <mat-slider
+          thumbLabel
+          [displayWith]="formatLabel"
+          color="primary"
+          tickInterval="5"
+          min="1"
+          max="20000"
+          [(ngModel)]="price"
+          onchange="updateResult()"
+        ></mat-slider>
+      </div>
+
+      <p style="margin-top: 25px">Want to use more option?</p>
+      <button
+        mat-raised-button
+        color="primary"
+        id="toInsuract"
+        [routerLink]="['/insurance']"
+      >
+        Use full version of insuract now.
+      </button>
+    </div>
     <div id="popup__right">right</div>
   </div>
 </header>
