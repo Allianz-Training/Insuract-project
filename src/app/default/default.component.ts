@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -22,7 +23,7 @@ export class DefaultComponent implements OnInit {
     });
   }
 
-  formatLabel(value: number) {
+  formatLabel(value: number): any {
     if (value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
@@ -34,7 +35,5 @@ export class DefaultComponent implements OnInit {
     this.insurance = c;
   }
 
-  updateResult() {
-    
-  }
+  updateResult() {}
 }

@@ -10,9 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import { InsuranceComponent } from './insurance/insurance.component';
+import { BrowserComponent } from './insurance/browser/browser.component';
 
 @NgModule({
-  declarations: [DefaultComponent, LoginComponent, RegisterComponent],
+  declarations: [DefaultComponent, LoginComponent, RegisterComponent, InsuranceComponent, BrowserComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -22,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
+    HttpClientModule,
   ],
   exports: [DefaultComponent],
 })

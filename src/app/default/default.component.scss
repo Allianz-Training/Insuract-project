@@ -134,6 +134,11 @@ section#jumbotron {
       border: 2px solid rgb(0, 0, 0, 0.2);
       border-radius: 5px;
       width: 100%;
+      box-sizing: border-box;
+
+      button {
+        margin-bottom: 5px;
+      }
     }
     #toInsuract {
       padding: 10px;
