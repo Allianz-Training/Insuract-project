@@ -1,24 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-export class Insurance {
-  constructor(
-    public company: string,
-    public productName: string,
-    public productType: string,
-    public productRange: string,
-    public ipd: number,
-    public opd: number,
-    public death: number,
-    public room: number,
-    public annualPayment: number,
-    public trimesterPayment: number,
-    public monthlyPayment: number,
-    public retirementOnetime: number,
-    public retirementMonthly: number,
-    public id: string
-  ) {}
-}
+import { MatTableDataSource } from '@angular/material/table';
+import { Insurance } from 'src/app/Insurance';
+import { ProductsService } from 'src/app/products.service';
 
 @Component({
   selector: 'app-browser',
@@ -26,22 +9,35 @@ export class Insurance {
   styleUrls: ['./browser.component.scss'],
 })
 export class BrowserComponent implements OnInit {
-  insurances: Insurance[];
+  ELEMENT_DATA: Insurance[];
+  displayedColumns: string[] = [
+    'productType',
+    'company',
+    'productName',
+    'monthlyPayment',
+    'trimesterPayment',
+    'annualPayment',
+    'ipd',
+    'opd',
+    'death',
+    'room',
+    'retirementMonthly',
+    'retirementOneTime',
+  ];
+  dataSource = new MatTableDataSource<Insurance>(this.ELEMENT_DATA);
 
-  constructor(private httpClient: HttpClient) {
-    this.insurances = [];
+  constructor(private service: ProductsService) {
+    this.ELEMENT_DATA = [];
   }
 
   ngOnInit(): void {
-    this.getInsurance();
+    this.getAllInsurance();
   }
 
-  getInsurance() {
-    this.httpClient
-      .get<any>('localhost:8080/product/')
-      .subscribe((response) => {
-        console.log(response);
-        this.insurances = response;
-      });
+  public getAllInsurance(): any {
+    let response = this.service.getInsurance();
+    response.subscribe((insurance) => {
+      this.dataSource.data = insurance as Insurance[];
+    });
   }
 }

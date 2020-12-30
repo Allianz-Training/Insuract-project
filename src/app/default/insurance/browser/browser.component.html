@@ -1,2 +1,81 @@
 <div id="filter"></div>
-<div id="products"></div>
+<div id="products">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="productType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Insurance</th>
+      <td mat-cell *matCellDef="let element">{{ element.productType }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
+      <td mat-cell *matCellDef="let element">{{ element.company }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Package name</th>
+      <td mat-cell *matCellDef="let element">{{ element.productName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="monthlyPayment">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Monthly subscription
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.monthlyPayment }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="trimesterPayment">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Trimester subscription
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.trimesterPayment }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="annualPayment">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Annual subscription
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.annualPayment }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ipd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>IPD</th>
+      <td mat-cell *matCellDef="let element">{{ element.ipd }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="opd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>OPD</th>
+      <td mat-cell *matCellDef="let element">{{ element.opd }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="death">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Death coverage</th>
+      <td mat-cell *matCellDef="let element">{{ element.death }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="room">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Room coverage</th>
+      <td mat-cell *matCellDef="let element">{{ element.room }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="retirementMonthly">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Retirement Monthly
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.retirementMonthly }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="retirementOneTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        One-time Retirement
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.retirementOneTime }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
