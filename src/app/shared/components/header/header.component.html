@@ -7,8 +7,12 @@
     <div id="logo"><a [routerLink]="['/']">Insuract</a></div>
     <ul fxHide.lt-sm>
       <li><a [routerLink]="['/']">Home</a></li>
-      <li><a [routerLink]="['/insurance']">Insurance</a></li>
-      <li><a [routerLink]="['/aboutus']">About-us</a></li>
+      <li>
+        <a [routerLink]="['/insurance']" routerLinkActive="active">Insurance</a>
+      </li>
+      <li>
+        <a [routerLink]="['/aboutus']" routerLinkActive="active">About-us</a>
+      </li>
     </ul>
     <!-- if users >> change router link to profileComponent -->
     <button

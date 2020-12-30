@@ -9,9 +9,8 @@ import { ProductsService } from 'src/app/products.service';
   styleUrls: ['./browser.component.scss'],
 })
 export class BrowserComponent implements OnInit {
-  ELEMENT_DATA: Insurance[];
+  ELEMENT_DATA?: Insurance[];
   displayedColumns: string[] = [
-    'productType',
     'company',
     'productName',
     'monthlyPayment',
@@ -23,19 +22,19 @@ export class BrowserComponent implements OnInit {
     'room',
     'retirementMonthly',
     'retirementOneTime',
+    'action',
   ];
-  dataSource = new MatTableDataSource<Insurance>(this.ELEMENT_DATA);
+  dataSource: any;
 
-  constructor(private service: ProductsService) {
-    this.ELEMENT_DATA = [];
-  }
+  constructor(private service: ProductsService) {}
 
   ngOnInit(): void {
     this.getAllInsurance();
+    this.dataSource = new MatTableDataSource<Insurance>(this.ELEMENT_DATA);
   }
 
   public getAllInsurance(): any {
-    let response = this.service.getInsurance();
+    const response = this.service.getInsurance();
     response.subscribe((insurance) => {
       this.dataSource.data = insurance as Insurance[];
     });

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap");
 
 header {
-  background-color: #007bff;
+  background-color: #080808;
 }
 nav {
   position: fixed;
@@ -100,7 +100,7 @@ section#jumbotron {
 
 #jumbotron__popup {
   position: relative;
-  top: -400px;
+  top: -500px;
   z-index: 1;
   background-color: #ffffff;
   margin: auto;
@@ -149,7 +149,13 @@ section#jumbotron {
 
 body {
   position: relative;
-  top: -350px;
+  top: -450px;
+
+  #about {
+    padding: 100px;
+    background-color: #262626;
+    color: #ffffff;
+  }
 }
 
 @media only screen and (max-width: 1280px) {

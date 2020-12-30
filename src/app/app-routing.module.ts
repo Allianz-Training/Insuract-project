@@ -9,6 +9,7 @@ import { RegisterComponent } from './default/register/register.component';
 const routes: Routes = [
   {
     path: '',
+
     component: DefaultComponent,
   },
   {

@@ -6,9 +6,13 @@
   <nav>
     <div id="logo"><a [routerLink]="['/']">Insuract</a></div>
     <ul fxHide.lt-sm>
-      <li><a [routerLink]="['/']" class="active">Home</a></li>
-      <li><a [routerLink]="['/insurance']">Insurance</a></li>
-      <li><a [routerLink]="['/about']">About-us</a></li>
+      <li><a [routerLink]="['/']" routerLinkActive="active">Home</a></li>
+      <li>
+        <a [routerLink]="['/insurance']" routerLinkActive="active">Insurance</a>
+      </li>
+      <li>
+        <a [routerLink]="['/about']" routerLinkActive="active">About-us</a>
+      </li>
       <li>
         <button mat-flat-button color="primary" [routerLink]="['/login']">
           Get Started
@@ -121,7 +125,26 @@
 </header>
 <body>
   <app-carousel></app-carousel>
-  <div>555</div>
+  <div id="about">
+    <h1>About us</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quidem
+      laboriosam facere, debitis cumque tempora hic molestiae dolorum minus
+      mollitia animi quasi vitae iusto ipsa! Est non iusto amet iste?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore nihil
+      quas quia obcaecati natus, doloremque itaque nostrum laudantium quod!
+      Inventore est officiis impedit quo placeat soluta velit facilis nemo
+      molestiae? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Ducimus quidem laboriosam facere, debitis cumque tempora hic molestiae
+      dolorum minus mollitia animi quasi vitae iusto ipsa! Est non iusto amet
+      iste? Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
+      perspiciatis et enim voluptate suscipit, natus consequuntur placeat
+      cupiditate velit vero iste dolor vel commodi numquam dolorum ratione
+      voluptates porro laudantium.
+    </p>
+  </div>
 </body>
 <footer>
   <app-footer></app-footer>
