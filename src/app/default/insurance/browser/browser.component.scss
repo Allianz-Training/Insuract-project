@@ -3,9 +3,11 @@
 }
 
 #products {
-  width: 100vw;
-
+  padding-top: 20px;
+  box-sizing: border-box;
+  
   table {
     width: 100%;
+    overflow: scroll;
   }
 }

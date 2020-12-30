@@ -11,9 +11,6 @@
         <a [routerLink]="['/insurance']" routerLinkActive="active">Insurance</a>
       </li>
       <li>
-        <a [routerLink]="['/about']" routerLinkActive="active">About-us</a>
-      </li>
-      <li>
         <button mat-flat-button color="primary" [routerLink]="['/login']">
           Get Started
         </button>
@@ -55,96 +52,117 @@
     </mat-menu>
   </nav>
 
-  <section id="jumbotron"></section>
-  <div id="jumbotron__popup">
-    <div id="popup__left">
-      <h1>Try it now!</h1>
-      <p>try out our minified insurace browsing website.</p>
-      <p>
-        we have wide range of product to choose from. type of insurance, cheap
-        or expensive budget, coverages, and many more!
-      </p>
+  <section id="jumbotron">
+    <div id="jumbotron__popup">
+      <div id="popup__left">
+        <h1>Try it now!</h1>
+        <p>try out our minified insurace browsing website.</p>
+        <p>
+          we have wide range of product to choose from. type of insurance, cheap
+          or expensive budget, coverages, and many more!
+        </p>
 
-      <div id="minified__filter">
-        <h2>
-          Im looking for {{ insurance }}
-          <span *ngIf="this.insurance">insurance.</span>
-        </h2>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
-          <button
-            mat-flat-button
-            id="health"
+        <div id="minified__filter">
+          <h2>
+            Im looking for {{ insurance }}
+            <span *ngIf="this.insurance">insurance.</span>
+          </h2>
+          <div
+            fxLayout="row wrap"
+            fxLayoutAlign="start center"
+            fxLayoutGap="5px"
+          >
+            <button
+              mat-flat-button
+              id="health"
+              color="primary"
+              (click)="selectCategory('health')"
+            >
+              Health insurance
+            </button>
+            <button
+              mat-flat-button
+              id="retirement"
+              color="accent"
+              (click)="selectCategory('retirement')"
+            >
+              Retirement insurance
+            </button>
+            <button
+              mat-flat-button
+              id="motor"
+              color="warn"
+              (click)="selectCategory('motor')"
+            >
+              Motor insurance
+            </button>
+          </div>
+
+          <h2>I'd be happy to pay {{ price }} per month</h2>
+          <mat-slider
+            thumbLabel
+            [displayWith]="formatLabel"
             color="primary"
-            (click)="selectCategory('health')"
-          >
-            Health insurance
-          </button>
-          <button
-            mat-flat-button
-            id="retirement"
-            color="accent"
-            (click)="selectCategory('retirement')"
-          >
-            Retirement insurance
-          </button>
-          <button
-            mat-flat-button
-            id="motor"
-            color="warn"
-            (click)="selectCategory('motor')"
-          >
-            Motor insurance
-          </button>
+            tickInterval="5"
+            min="1"
+            max="20000"
+            [(ngModel)]="price"
+            onchange="updateResult()"
+          ></mat-slider>
         </div>
 
-        <h2>I'd be happy to pay {{ price }} per month</h2>
-        <mat-slider
-          thumbLabel
-          [displayWith]="formatLabel"
+        <p style="margin-top: 25px">Want to use more option?</p>
+        <button
+          mat-raised-button
           color="primary"
-          tickInterval="5"
-          min="1"
-          max="20000"
-          [(ngModel)]="price"
-          onchange="updateResult()"
-        ></mat-slider>
+          id="toInsuract"
+          [routerLink]="['/insurance']"
+        >
+          Use full version of insuract now.
+        </button>
       </div>
-
-      <p style="margin-top: 25px">Want to use more option?</p>
-      <button
-        mat-raised-button
-        color="primary"
-        id="toInsuract"
-        [routerLink]="['/insurance']"
-      >
-        Use full version of insuract now.
-      </button>
+      <div id="popup__right">right</div>
     </div>
-    <div id="popup__right">right</div>
-  </div>
+  </section>
 </header>
 <body>
   <app-carousel></app-carousel>
-  <div id="about">
+  <div class="about">
     <h1>About us</h1>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quidem
-      laboriosam facere, debitis cumque tempora hic molestiae dolorum minus
-      mollitia animi quasi vitae iusto ipsa! Est non iusto amet iste?
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore nihil
-      quas quia obcaecati natus, doloremque itaque nostrum laudantium quod!
-      Inventore est officiis impedit quo placeat soluta velit facilis nemo
-      molestiae? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Ducimus quidem laboriosam facere, debitis cumque tempora hic molestiae
-      dolorum minus mollitia animi quasi vitae iusto ipsa! Est non iusto amet
-      iste? Lorem ipsum dolor sit amet consectetur adipisicing elit. Non
-      perspiciatis et enim voluptate suscipit, natus consequuntur placeat
-      cupiditate velit vero iste dolor vel commodi numquam dolorum ratione
-      voluptates porro laudantium.
+      Welcome to Insuract, the application that will reduce the time and energy
+      wasted by manually buying insurance policies; the main problem of
+      insurance policy. The solution is the inspiration of treating insurance
+      policies like any other products sold in online stores. If we are able to
+      take the middle man who needs to do the paperwork for the customers, then
+      the process of buying insurance for anyone will be faster and simpler.
     </p>
   </div>
+  <div class="about">
+    <h1>Who we are</h1>
+    <p>
+      We are Insuract! We are the upcoming future of Insurance Automation. Our
+      target is to lead our customers towards the future along with the company.
+      With that in mind, we only care about serving our customer’s best
+      interests and grow alongside one another as we build a strong foundation
+      of a combination between Computer Engineering and Automation Engineering.
+      Our main goal in the end is to create quick and easy to use products that
+      help customers achieve hard tasks easily at the push of their fingertips.
+    </p>
+  </div>
+  <div class="about">
+    <h1>Why choose Insuract</h1>
+    <p>
+      We are Insuract! We are the upcoming future of Insurance Automation. Our
+      target is to lead our customers towards the future along with the company.
+      With that in mind, we only care about serving our customer’s best
+      interests and grow alongside one another as we build a strong foundation
+      of a combination between Computer Engineering and Automation Engineering.
+      Our main goal in the end is to create quick and easy to use products that
+      help customers achieve hard tasks easily at the push of their fingertips.
+    </p>
+  </div>
+  <div id="divide"></div>
 </body>
 <footer>
   <app-footer></app-footer>

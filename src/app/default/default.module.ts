@@ -13,9 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { InsuranceComponent } from './insurance/insurance.component';
 import { BrowserComponent } from './insurance/browser/browser.component';
+import { DetailComponent } from './insurance/detail/detail.component';
 
 @NgModule({
-  declarations: [DefaultComponent, LoginComponent, RegisterComponent, InsuranceComponent, BrowserComponent],
+  declarations: [DefaultComponent, LoginComponent, RegisterComponent, InsuranceComponent, BrowserComponent, DetailComponent],
   imports: [
     CommonModule,
     RouterModule,

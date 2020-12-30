@@ -100,7 +100,7 @@ section#jumbotron {
 
 #jumbotron__popup {
   position: relative;
-  top: -500px;
+  bottom: -100px;
   z-index: 1;
   background-color: #ffffff;
   margin: auto;
@@ -148,13 +148,26 @@ section#jumbotron {
 }
 
 body {
-  position: relative;
-  top: -450px;
+  // position: relative;
+  // top: -450px;
+  padding-top: 150px;
+  background-color: #000000;
 
-  #about {
-    padding: 100px;
+  .about {
+    padding: 25px 300px 30px 300px;
     background-color: #262626;
     color: #ffffff;
+    // box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .about:nth-child(3) {
+    background-color: #2e2e2e;
+  }
+
+  #divide {
+    height: 200px;
+    background: url("../../assets/carousel.jpg");
+    background-position: center;
   }
 }
 
@@ -194,5 +207,9 @@ body {
         margin-bottom: 5px;
       }
     }
+  }
+
+  .about {
+    padding: 20px !important;
   }
 }

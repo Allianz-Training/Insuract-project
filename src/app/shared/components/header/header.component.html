@@ -11,7 +11,14 @@
         <a [routerLink]="['/insurance']" routerLinkActive="active">Insurance</a>
       </li>
       <li>
-        <a [routerLink]="['/aboutus']" routerLinkActive="active">About-us</a>
+        <button
+          mat-mini-fab
+          color="primary"
+          class="responsive__button"
+          [routerLink]="['/login']"
+        >
+          <mat-icon>account_circle</mat-icon>
+        </button>
       </li>
     </ul>
     <!-- if users >> change router link to profileComponent -->
