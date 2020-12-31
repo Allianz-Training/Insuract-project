@@ -1,6 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Insurance } from 'src/app/Insurance';
 import { ProductsService } from 'src/app/products.service';
 
 @Component({
@@ -9,34 +8,102 @@ import { ProductsService } from 'src/app/products.service';
   styleUrls: ['./browser.component.scss'],
 })
 export class BrowserComponent implements OnInit {
-  ELEMENT_DATA?: Insurance[];
-  displayedColumns: string[] = [
-    'company',
-    'productName',
-    'monthlyPayment',
-    'trimesterPayment',
-    'annualPayment',
-    'ipd',
-    'opd',
-    'death',
-    'room',
-    'retirementMonthly',
-    'retirementOneTime',
-    'action',
-  ];
-  dataSource: any;
+  private gridApi: any;
+  private gridColumnApi: any;
+  public columnDefs: any;
+  private sortingOrder: any;
 
-  constructor(private service: ProductsService) {}
-
-  ngOnInit(): void {
-    this.getAllInsurance();
-    this.dataSource = new MatTableDataSource<Insurance>(this.ELEMENT_DATA);
+  constructor(private service: ProductsService, private http: HttpClient) {
+    this.columnDefs = [
+      {
+        headerName: 'Type',
+        field: 'productType',
+        sortingOrder: ['asc', 'desc', null],
+        sortable: true,
+        filter: true,
+      },
+      {
+        headerName: 'Company',
+        field: 'company',
+        sortingOrder: ['asc', 'desc'],
+        sortable: true,
+        filter: true,
+      },
+      {
+        headerName: 'Package name',
+        field: 'productName',
+        sortingOrder: ['asc', 'desc'],
+        sortable: true,
+        filter: true,
+      },
+      {
+        headerName: 'Monthly payment',
+        field: 'monthlyPayment',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'Trimester payment',
+        field: 'trimesterPayment',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'Annaul payment',
+        field: 'annualPayment',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'IPD',
+        field: 'ipd',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'OPD',
+        field: 'opd',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'Death',
+        field: 'death',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'Room coverage',
+        field: 'room',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'Retirement (onetime)',
+        field: 'retirementOneTime',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+      {
+        headerName: 'Retirement (monthly)',
+        field: 'retirementMonthly',
+        sortable: true,
+        filter: 'agNumberColumnFilter',
+      },
+    ];
+    this.sortingOrder = ['desc', 'asc', null];
   }
 
-  public getAllInsurance(): any {
-    const response = this.service.getInsurance();
-    response.subscribe((insurance) => {
-      this.dataSource.data = insurance as Insurance[];
+  ngOnInit(): void {}
+
+  onGridReady(params: any): void {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.http.get('http://localhost:8080/product/').subscribe((data) => {
+      console.log(data);
+      params.api.setRowData(data);
     });
   }
+
+  
 }
