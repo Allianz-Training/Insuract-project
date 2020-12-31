@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { type } from 'jquery';
 import { ProductsService } from 'src/app/products.service';
 
 @Component({
@@ -11,13 +12,22 @@ export class BrowserComponent implements OnInit {
   private gridApi: any;
   private gridColumnApi: any;
   public columnDefs: any;
-  private sortingOrder: any;
+  public sortingOrder: any;
 
-  constructor(private service: ProductsService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
     this.columnDefs = [
+      {
+        headerName: '',
+        field: 'id',
+        width: 100,
+        cellRenderer(params: { value: any }): any {
+          return `<a href="/insurance/${params.value}" class="detailLink" >Detail</a>`;
+        },
+      },
       {
         headerName: 'Type',
         field: 'productType',
+        width: 100,
         sortingOrder: ['asc', 'desc', null],
         sortable: true,
         filter: true,
@@ -25,6 +35,7 @@ export class BrowserComponent implements OnInit {
       {
         headerName: 'Company',
         field: 'company',
+        width: 150,
         sortingOrder: ['asc', 'desc'],
         sortable: true,
         filter: true,
@@ -32,61 +43,71 @@ export class BrowserComponent implements OnInit {
       {
         headerName: 'Package name',
         field: 'productName',
+        width: 200,
         sortingOrder: ['asc', 'desc'],
         sortable: true,
         filter: true,
       },
       {
-        headerName: 'Monthly payment',
+        headerName: 'Monthly',
         field: 'monthlyPayment',
+        width: 125,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
-        headerName: 'Trimester payment',
+        headerName: 'Trimester',
         field: 'trimesterPayment',
+        width: 125,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
-        headerName: 'Annaul payment',
+        headerName: 'Annaul',
         field: 'annualPayment',
+        width: 125,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
         headerName: 'IPD',
         field: 'ipd',
+        width: 125,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
         headerName: 'OPD',
         field: 'opd',
+        width: 125,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
         headerName: 'Death',
         field: 'death',
+        width: 125,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
         headerName: 'Room coverage',
         field: 'room',
+        width: 175,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
         headerName: 'Retirement (onetime)',
         field: 'retirementOneTime',
+        width: 190,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
       {
         headerName: 'Retirement (monthly)',
         field: 'retirementMonthly',
+        width: 190,
         sortable: true,
         filter: 'agNumberColumnFilter',
       },
@@ -105,5 +126,24 @@ export class BrowserComponent implements OnInit {
     });
   }
 
-  
+  // var insuranceType = 'all';
+  // isExternalFilterPresent(): boolean {
+  //   return insuraceType !== 'all';
+  // }
+
+  // doesExternalFilterPass(node): any {
+  //   switch (insuranceType) {
+  //     case 'Health':
+  //       return node.data.productType === 'Health';
+  //     case 'Retirement':
+  //       return node.data.productType === 'Retirement';
+  //     default:
+  //       return true;
+  //   }
+  // }
+
+  // changeType(newValue: string): void {
+  //   insuranceType = newValue;
+  //   this.gridApi.onFilterChanged();
+  // }
 }

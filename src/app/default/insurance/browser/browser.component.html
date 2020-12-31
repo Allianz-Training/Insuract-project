@@ -1,13 +1,11 @@
-<div id="filter">
-  <button mat-button (click)="changeType('health')">Health</button>
-  <button mat-button (click)="changeType('retirement')">Retirement</button>
-</div>
+<div id="filter"></div>
 <div id="products">
   <ag-grid-angular
     class="ag-theme-material"
     (gridReady)="onGridReady($event)"
     [columnDefs]="columnDefs"
     animateRows="true"
+    [sortingOrder]="sortingOrder"
   >
   </ag-grid-angular>
   <!-- <table mat-table [dataSource]="dataSource" matSort>
