@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Insurance } from 'src/app/Insurance';
+import { ProductsService } from 'src/app/products.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,7 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  insurance: any;
 
-  ngOnInit(): void {}
+  constructor(
+    private insuranceApi: ProductsService,
+    private route: ActivatedRoute
+  ) {
+    this.insurance = [];
+  }
+
+  ngOnInit(): void {
+    this.loadInsurance();
+  }
+
+  loadInsurance(): void {
+    // tslint:disable-next-line: no-non-null-assertion
+    const insuranceId = +this.route.snapshot.paramMap.get('id')!;
+    this.insuranceApi.getInsuranceById(insuranceId).subscribe((data) => {
+      this.insurance = data;
+      console.log(this.insurance);
+    });
+    console.warn(`recieved params id '${insuranceId}' from ActivatedRoute`);
+  }
 }

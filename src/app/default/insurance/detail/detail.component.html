@@ -1,11 +1,128 @@
 <app-header></app-header>
 <div class="container">
   <div id="left">
-    <img src="../../../../assets/allianz.png" alt="" />
+    <img
+      *ngIf="insurance.company == 'Allianz'"
+      src="../../../../assets/allianz.png"
+      alt=""
+    />
+    <mat-divider> </mat-divider>
+    <div>
+      <h1 id="title">{{ insurance.productName }}</h1>
+      <button
+        mat-flat-button
+        color="primary"
+        *ngIf="insurance.productType === 'Health'"
+      >
+        Health Insurance
+      </button>
+      <button
+        mat-flat-button
+        color="accent"
+        *ngIf="insurance.productType === 'Retirement'"
+      >
+        Retirement Insurance
+      </button>
+      <button
+        mat-flat-button
+        color="warn"
+        *ngIf="insurance.productType === 'Motor'"
+      >
+        Motor Insurance
+      </button>
+    </div>
+
+    <div id="price">
+      <div class="border">
+        <button mat-flat-button>Monthly payment</button>
+        {{ insurance.monthlyPayment }} THB
+      </div>
+      <div class="border">
+        <button mat-flat-button>Trimester payment</button>
+        {{ insurance.trimesterPayment }} THB
+      </div>
+      <div class="border">
+        <button mat-flat-button>Annual payment</button>
+        {{ insurance.annualPayment }} THB
+      </div>
+    </div>
+
+    <table *ngIf="insurance.productType === 'Health'">
+      <tr>
+        <th>IPD</th>
+        <td>{{ insurance.ipd }}</td>
+      </tr>
+      <tr>
+        <th>OPD</th>
+        <td>{{ insurance.opd }}</td>
+      </tr>
+      <tr>
+        <th>Death coverage</th>
+        <td>{{ insurance.death }}</td>
+      </tr>
+      <tr>
+        <th>Room coverage</th>
+        <td>{{ insurance.room }}</td>
+      </tr>
+    </table>
+
+    <table *ngIf="insurance.productType === 'Retirement'">
+      <tr>
+        <th>Retirement onetime payment</th>
+        <td>{{ insurance.retirementOneTime }}</td>
+      </tr>
+      <tr>
+        <th>Retirement monthly payment</th>
+        <td>{{ insurance.retirementMonthly }}</td>
+      </tr>
+    </table>
+
+    <button id="subscribe" mat-raised-button>Subscribe now</button>
   </div>
   <div id="right">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, sapiente
-    sint atque illo aspernatur consequuntur, reprehenderit quia nisi quis
-    suscipit fugit cum est facilis natus corrupti cumque voluptatem rem vero!
+    <div>
+      <h1>Description</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ut
+        neque vero blanditiis eveniet cupiditate pariatur ratione delectus
+        voluptates repellat! Iure nulla, aut numquam cupiditate quisquam magnam
+        nam consectetur perferendis? Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Laudantium voluptatibus libero numquam doloremque
+        assumenda ratione, repudiandae possimus commodi voluptas itaque cumque
+        id. Nemo consequatur consectetur dignissimos quasi explicabo, voluptates
+        unde?
+      </p>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Price history chart </mat-panel-title>
+        </mat-expansion-panel-header>
+        <img src="../../../../assets/chart.gif" alt="" />
+        <p id="note">
+          this chart is a mock-up image for demonstration for upcoming
+          development
+        </p>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Related details </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+          accusantium hic quidem odit, explicabo et voluptatem dolor dolorum
+          dolore repudiandae aliquid mollitia quod aspernatur iste quia illo
+          illum eaque. Sequi. Lorem ipsum, dolor sit amet consectetur
+          adipisicing elit. Ab aut provident culpa earum consequuntur voluptas,
+          illum deleniti? Nostrum corporis eaque aperiam harum, nesciunt, porro
+          ipsam, asperiores velit exercitationem fugiat aspernatur? Lorem ipsum
+          dolor, sit amet consectetur adipisicing elit. Possimus quia placeat
+          odit excepturi nam expedita minima vitae fuga doloribus enim esse
+          temporibus ad, reiciendis quis quos perspiciatis necessitatibus
+          distinctio quas.
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

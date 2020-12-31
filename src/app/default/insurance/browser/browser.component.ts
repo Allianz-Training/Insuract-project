@@ -27,7 +27,7 @@ export class BrowserComponent implements OnInit {
       {
         headerName: 'Type',
         field: 'productType',
-        width: 100,
+        width: 130,
         sortingOrder: ['asc', 'desc', null],
         sortable: true,
         filter: true,
