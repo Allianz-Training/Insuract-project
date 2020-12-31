@@ -5,9 +5,9 @@
 #products {
   padding-top: 20px;
   box-sizing: border-box;
-  
-  table {
+
+  ag-grid-angular {
     width: 100%;
-    overflow: scroll;
+    height: 100vh;
   }
 }

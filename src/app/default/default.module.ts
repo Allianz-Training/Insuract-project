@@ -14,9 +14,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { InsuranceComponent } from './insurance/insurance.component';
 import { BrowserComponent } from './insurance/browser/browser.component';
 import { DetailComponent } from './insurance/detail/detail.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
-  declarations: [DefaultComponent, LoginComponent, RegisterComponent, InsuranceComponent, BrowserComponent, DetailComponent],
+  declarations: [
+    DefaultComponent,
+    LoginComponent,
+    RegisterComponent,
+    InsuranceComponent,
+    BrowserComponent,
+    DetailComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -27,6 +35,7 @@ import { DetailComponent } from './insurance/detail/detail.component';
     FormsModule,
     MatInputModule,
     HttpClientModule,
+    AgGridModule.withComponents(),
   ],
   exports: [DefaultComponent],
 })

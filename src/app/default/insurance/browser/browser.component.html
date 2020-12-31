@@ -1,10 +1,18 @@
 <div id="filter"></div>
 <div id="products">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <!-- <ng-container matColumnDef="productType">
+  <ag-grid-angular
+    class="ag-theme-material"
+    (gridReady)="onGridReady($event)"
+    [columnDefs]="columnDefs"
+    animateRows="true"
+    [sortingOrder]="sortingOrder"
+  >
+  </ag-grid-angular>
+  <!-- <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="productType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Insurance</th>
       <td mat-cell *matCellDef="let element">{{ element.productType }}</td>
-    </ng-container> -->
+    </ng-container>
 
     <ng-container matColumnDef="company">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
@@ -84,5 +92,5 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+  </table> -->
 </div>
