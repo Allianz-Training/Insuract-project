@@ -5,6 +5,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { UsersService } from 'src/app/users.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,11 @@ export class RegisterComponent implements OnInit {
   accountForm: FormGroup;
   personalForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  userAvailable:boolean | undefined;
+  emailAvailable:boolean | undefined;
+  citizenIdAvailable:boolean | undefined;
+
+  constructor(private fb: FormBuilder, private service: UsersService) {
     this.accountForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -56,7 +61,58 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { 
+  }
+
+
+
+  public async validateUser() {
+    await this.service.validateUser(this.accountForm.get('username')?.value).then(
+      response => {
+        console.log(response.status)
+        if(response.ok){
+          console.log("OK")
+          this.userAvailable = true
+        }
+      }
+    ).catch( err => {
+      console.error("Dup",err)
+      this.userAvailable = false;
+    })
+    console.log(this.userAvailable)
+  }
+
+  public async validateEmail() {
+    await this.service.validateEmail(this.accountForm.get('email')?.value).then(
+      response => {
+        console.log(response.status)
+        if(response.ok){
+          console.log("OK")
+          this.emailAvailable = true
+        }
+      }
+    ).catch( err => {
+      console.error("Dup",err)
+      this.emailAvailable = false;
+    })
+    console.log(this.emailAvailable)
+  }
+
+  public async validateCitizenId() {
+    await this.service.validateCitizenId(this.personalForm.get('citizenID')?.value).then(
+      response => {
+        console.log(response.status)
+        if(response.ok){
+          console.log("OK")
+          this.citizenIdAvailable = true
+        }
+      }
+    ).catch( err => {
+      console.error("Dup",err)
+      this.citizenIdAvailable = false;
+    })
+    console.log(this.citizenIdAvailable)
+  }
 
   submitforms(): void {
     console.warn(this.accountForm.value);
