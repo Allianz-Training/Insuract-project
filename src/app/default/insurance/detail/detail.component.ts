@@ -11,10 +11,7 @@ import { ProductsService } from 'src/app/products.service';
 export class DetailComponent implements OnInit {
   insurance: any;
 
-  constructor(
-    private insuranceApi: ProductsService,
-    private route: ActivatedRoute
-  ) {
+  constructor(private _api: ProductsService, private route: ActivatedRoute) {
     this.insurance = [];
   }
 
@@ -25,10 +22,11 @@ export class DetailComponent implements OnInit {
   loadInsurance(): void {
     // tslint:disable-next-line: no-non-null-assertion
     const insuranceId = +this.route.snapshot.paramMap.get('id')!;
-    this.insuranceApi.getInsuranceById(insuranceId).subscribe((data) => {
+    const promise = this._api.getInsuranceById(insuranceId).toPromise();
+
+    promise.then((data) => {
       this.insurance = data;
-      console.log(this.insurance);
+      console.warn(`recieved params id '${insuranceId}' from ActivatedRoute`);
     });
-    console.warn(`recieved params id '${insuranceId}' from ActivatedRoute`);
   }
 }

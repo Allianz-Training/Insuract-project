@@ -9,8 +9,11 @@ import { ProductsService } from 'src/app/products.service';
 export class BrowserComponent implements OnInit {
   private gridApi: any;
   private gridColumnApi: any;
+  private gridOptions: any;
   public columnDefs: any;
   public sortingOrder: any;
+  tableStatus = 'loading';
+  hideTable = true;
 
   // tslint:disable-next-line: variable-name
   constructor(private _api: ProductsService) {
@@ -22,6 +25,7 @@ export class BrowserComponent implements OnInit {
         cellRenderer(params: { value: any }): any {
           return `<a href="/insurance/${params.value}" class="detailLink" >Detail</a>`;
         },
+        pinned: 'left',
       },
       {
         headerName: 'Type',
@@ -119,10 +123,24 @@ export class BrowserComponent implements OnInit {
   onGridReady(params: any): void {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this._api.getInsurance().subscribe((data) => {
-      console.log(data);
-      params.api.setRowData(data);
-    });
+
+    const promise = this._api.getInsurance().toPromise();
+
+    promise
+      .then((data) => {
+        console.warn(this.tableStatus + ' data from api');
+        this.tableStatus = 'loaded';
+        this.hideTable = false;
+        console.log(data);
+        console.warn('data is ' + this.tableStatus);
+
+        params.api.setRowData(data);
+      })
+      .catch((error) => {
+        console.warn('cannot get data from api, try again later');
+        console.warn(error);
+        this.tableStatus = 'error';
+      });
   }
 
   // var insuranceType = 'all';

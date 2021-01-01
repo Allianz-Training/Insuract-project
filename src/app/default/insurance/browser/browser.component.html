@@ -1,6 +1,16 @@
 <div id="filter"></div>
 <div id="products">
+  <div *ngIf="tableStatus == 'loading'" class="spinner">
+    <mat-spinner></mat-spinner>
+    <p>getting data from database please wait...</p>
+  </div>
+
+  <div *ngIf="tableStatus == 'error'" class="spinner">
+    <p>unable to get data from database, check console to see an errors.</p>
+  </div>
+
   <ag-grid-angular
+    [class.hide]="hideTable"
     class="ag-theme-material"
     (gridReady)="onGridReady($event)"
     [columnDefs]="columnDefs"
