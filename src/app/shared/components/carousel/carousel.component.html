@@ -1,14 +1,74 @@
 <div>
   <h1>Package of the season.</h1>
-  <div id="cards">
-      <div class="card">
+  <div
+    id="cards"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-around center"
+    fxLayoutGap="10px"
+  >
+    <div class="card" fxHide.lt-lg>
+      <h2 style="color: rgb(32, 187, 32)">Thai Life Insurance</h2>
+      <h3>Care4U</h3>
+      <mat-divider> </mat-divider>
+      <p>
+        Care4U is a product from Thai Life Insurance which is one of the
+        company's most popular insurance policies. It provides great coverage in
+        case of emergencies and it is a simple and quick to respond to users.
+        This is a highly reccommended policy from most users of the policy.
+      </p>
+      <mat-divider> </mat-divider>
+      <button mat-raised-button class="full-width" color="primary">
+        subscribe now for only 1850 thb/month
+      </button>
+    </div>
 
-      </div>
-      <div class="card">
+    <div class="card" matBadge="!" matBadgeSize="large" matBadgeColor="warn">
+      <img src="../../../../assets/allianz.png" alt="" />
+      <h3>New graduate Treatment.</h3>
+      <mat-divider> </mat-divider>
+      <p>
+        New graduate Treatment is the pride and joy of our company and is the
+        description of Premium Care carefully constructed through massive trials
+        and surveys to become the answer of all your needs. The biggest
+        highlights of this product are carefully considered by our research
+        analysts. This product provides high coverage through consideration of
+        all possible emergencies with a high range of coverage allowance despite
+        you are an inpatient or an outpatient. We have been given green lights
+        from our executives to provide maximum benefits to our beloved customers
+        as it is our company's mission to care for you in every way possible.
+        New graduate Treatment is all the answers in an insurance policy that
+        you are looking for.
+      </p>
+      <mat-divider> </mat-divider>
+      <button
+        mat-raised-button
+        class="full-width"
+        color="warn"
+        routerLink="../insurance/240560"
+      >
+        limited offer only 1700 thb/month !!
+      </button>
+      <button mat-raised-button class="full-width strike" disabled>
+        subscribe now for 2000 thb/month
+      </button>
+    </div>
 
-      </div>
-      <div class="card">
-
-      </div>
+    <div class="card" fxHide.lt-lg>
+      <h2 style="color: rgb(197, 44, 6)">Bangkok Life Insurance</h2>
+      <h3>Bangkok Custom</h3>
+      <mat-divider> </mat-divider>
+      <p>
+        Bangkok Life Insurance is very popular for its flexibility in policies
+        and prices. Therefore, we are proudly introducing their king of kings.
+        Bangkok Custom provides freedom to design the insurance policy through
+        the preferences of our users and reccommendation of our agents. This
+        ensures our users that they are in control of what they need in an
+        insurance policy.
+      </p>
+      <mat-divider> </mat-divider>
+      <button mat-raised-button class="full-width" color="primary">
+        subscribe now for only 2100 thb/month
+      </button>
+    </div>
   </div>
 </div>

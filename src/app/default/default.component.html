@@ -90,7 +90,7 @@
             </button>
           </div>
 
-          <h2>I'd be happy to pay {{ price }} per month</h2>
+          <h2>I'd be happy to pay {{ priceCurrency }} bath per month</h2>
           <mat-slider
             thumbLabel
             [displayWith]="formatLabel"
@@ -99,7 +99,7 @@
             min="1"
             max="5000"
             [(ngModel)]="price"
-            onchange="updateResult()"
+            (change)="updateResult()"
           ></mat-slider>
         </div>
 
@@ -113,11 +113,130 @@
           Use full version of insuract now.
         </button>
       </div>
-      <div id="popup__right">right</div>
+      <div id="popup__right">
+        <div id="pop">Your recommended product is..</div>
+        <div id="result">
+          <div
+            class="showcase__product"
+            *ngIf="displayInsurance; else allianzShowcase"
+          >
+            <div id="img__title">
+              <img
+                src="../../assets/allianz.png"
+                *ngIf="displayInsurance[0].company == 'Allianz'"
+              />
+            </div>
+            <mat-divider> </mat-divider>
+
+            <h1 id="title">{{ displayInsurance[0].productName }}</h1>
+
+            <button
+              mat-flat-button
+              color="primary"
+              class="banner"
+              *ngIf="displayInsurance[0].productType == 'Health'"
+            >
+              Health Insurance
+            </button>
+            <button
+              mat-flat-button
+              color="accent"
+              class="banner"
+              *ngIf="displayInsurance[0].productType == 'Retirement'"
+            >
+              Retirement Insurance
+            </button>
+
+            <mat-divider> </mat-divider>
+
+            <table *ngIf="displayInsurance[0].productType == 'Health'">
+              <tr>
+                <th>IPD</th>
+                <td>{{ displayInsurance[0].ipd }}</td>
+              </tr>
+              <tr>
+                <th>OPD</th>
+                <td>{{ displayInsurance[0].opd }}</td>
+              </tr>
+              <tr>
+                <th>Death coverage</th>
+                <td>{{ displayInsurance[0].death }}</td>
+              </tr>
+              <tr>
+                <th>Room coverage</th>
+                <td>{{ displayInsurance[0].room }}</td>
+              </tr>
+            </table>
+
+            <table *ngIf="displayInsurance[0].productType == 'Retirement'">
+              <tr>
+                <th>Retirement onetime payment</th>
+                <td>{{ displayInsurance[0].retirementOneTime }}</td>
+              </tr>
+              <tr>
+                <th>Retirement monthly payment</th>
+                <td>{{ displayInsurance[0].retirementMonthly }}</td>
+              </tr>
+            </table>
+
+            <mat-divider> </mat-divider>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed
+              consectetur hic perspiciatis, mollitia omnis labore expedita non
+              officiis provident quae libero corrupti temporibus harum eaque
+              sint cumque. Id, dolore blanditiis! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Ipsam, assumenda alias iusto
+              reprehenderit tempora quae necessitatibus dicta vitae autem
+              voluptatibus fugiat dolorum consequuntur ipsum eligendi eveniet,
+              magni corrupti modi sed?
+            </p>
+
+            <button
+              mat-raised-button
+              color="warn"
+              routerLink="/insurance/{{ displayInsurance[0].id }}"
+            >
+              See more detail
+            </button>
+          </div>
+
+          <ng-template #allianzShowcase class="showcase__product">
+            <div id="img__title">
+              <img src="../../assets/allianz.png" alt="" />
+            </div>
+            <mat-divider> </mat-divider>
+            <h1 id="title">King Treatment</h1>
+            <button mat-flat-button color="primary" class="banner">
+              Health Insurance
+            </button>
+            <mat-divider> </mat-divider>
+            <p>
+              King Treatment is the pride and joy of our company and is the
+              description of Premium Care carefully constructed through massive
+              trials and surveys to become the answer of all your needs. The
+              biggest highlights of this product are carefully considered by our
+              research analysts. This product provides high coverage through
+              consideration of all possible emergencies with a high range of
+              coverage allowance despite you are an inpatient or an outpatient.
+              We have been given green lights from our executives to provide
+              maximum benefits to our beloved customers as it is our company's
+              mission to care for you in every way possible. King Treatment is
+              all the answers in an insurance policy that you are looking for.
+            </p>
+            <button
+              mat-raised-button
+              color="warn"
+              routerLink="../insurance/240560"
+            >
+              See more detail
+            </button>
+          </ng-template>
+        </div>
+      </div>
     </div>
   </section>
 </header>
-<body>
+<div class="body">
   <app-carousel></app-carousel>
   <div class="about">
     <h1>About us</h1>
@@ -139,7 +258,7 @@
       interests and grow alongside one another as we build a strong foundation
       of a combination between Computer Engineering and Automation Engineering.
       Our main goal in the end is to create quick and easy to use products that
-      help customers achieve hard tasks easily at the push of their fingertips.
+      help customers achieve hard tasks easily at t he push of their fingertips.
     </p>
   </div>
   <div class="about">
@@ -155,7 +274,7 @@
     </p>
   </div>
   <div id="divide"></div>
-</body>
-<footer>
+</div>
+<div class="footer">
   <app-footer></app-footer>
-</footer>
+</div>

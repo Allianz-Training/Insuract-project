@@ -2,6 +2,7 @@
 
 header {
   background-color: #080808;
+  box-sizing: border-box;
 }
 nav {
   position: fixed;
@@ -95,13 +96,12 @@ section#jumbotron {
   background-position: center;
   width: 100%;
   height: 70vh;
-  position: relative;
 }
 
 #jumbotron__popup {
   position: relative;
   bottom: -100px;
-  z-index: 1;
+  // z-index: 1;
   background-color: #ffffff;
   margin: auto;
   width: 70%;
@@ -145,9 +145,71 @@ section#jumbotron {
       width: 100%;
     }
   }
+
+  #popup__right {
+    border: 8px solid #007bff;
+    border-radius: 5px;
+    text-align: center;
+
+    #pop {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      width: 100%;
+      background-color: #007bff;
+      color: #ffffff;
+      font-size: 1.4rem;
+    }
+
+    #result {
+      padding: 10px;
+      border-radius: 5px;
+
+      #img__title {
+        border-radius: 5px;
+
+        img {
+          width: 50%;
+          height: auto;
+          display: block;
+          margin: 15px auto 10px auto;
+        }
+      }
+
+      #title {
+        padding-top: 10px;
+      }
+
+      p {
+        padding: 25px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+      }
+
+      button.banner {
+        padding: 0;
+        cursor: default;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 2px solid rgb(0, 0, 0, 0.1);
+        border-radius: 5px;
+
+        th {
+          padding: 5px;
+          text-align: left;
+        }
+      }
+    }
+  }
 }
 
-body {
+.body {
   // position: relative;
   // top: -450px;
   padding-top: 150px;
@@ -181,10 +243,21 @@ body {
     padding: 0;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 2fr;
+    display: block;
 
     #minified__filter {
       box-sizing: border-box;
     }
+  }
+
+  .body {
+    position: relative;
+    top: 419px;
+  }
+
+  .footer {
+    position: relative;
+    top: 350px;
   }
 }
 
@@ -211,5 +284,13 @@ body {
 
   .about {
     padding: 20px !important;
+  }
+
+  .body {
+    top: 900px;
+  }
+
+  .footer {
+    top: 650px;
   }
 }

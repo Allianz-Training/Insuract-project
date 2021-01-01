@@ -9,10 +9,19 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./default.component.scss'],
 })
 export class DefaultComponent implements OnInit {
-  insurance: string = '';
-  price: number = 1000;
+  insurance: string;
+  price: number;
+  priceCurrency: string;
 
-  constructor(private _api: ProductsService) {}
+  displayInsurance: any;
+
+  // tslint:disable-next-line: variable-name
+  constructor(private _api: ProductsService) {
+    this.insurance = 'Health';
+    this.price = 1000;
+    this.priceCurrency = '';
+    this.displayInsurance = undefined;
+  }
 
   ngOnInit(): void {
     $(window).on('scroll', () => {
@@ -34,9 +43,27 @@ export class DefaultComponent implements OnInit {
 
   selectCategory(c: string): void {
     this.insurance = c;
+    this.updateResult();
   }
 
-  updateResult() {
-    // const promise = this._api.
+  updateResult(): void {
+    // update price number to currency format
+    this.priceCurrency = this.price
+      .toString()
+      .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+
+    // get filter from backend
+    const promise = this._api
+      .filterMinInsurance(this.insurance, this.price)
+      .toPromise();
+
+    promise
+      .then((data) => {
+        this.displayInsurance = data;
+        console.log(this.displayInsurance);
+      })
+      .catch((error) => {
+        console.warn(error);
+      });
   }
 }

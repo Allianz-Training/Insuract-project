@@ -10,6 +10,9 @@ import { Insurance } from './Insurance';
 export class ProductsService {
   baseUrl = 'http://localhost:8080/product/';
 
+  // convert number to product range to communicate with backend
+  range!: string;
+
   constructor(private http: HttpClient) {}
 
   public getInsurance(): Observable<Insurance[]> {
@@ -22,6 +25,18 @@ export class ProductsService {
   }
 
   public filterMinInsurance(category: string, price: number): Observable<any> {
-    const url = `${this.baseUrl}product/${category}`
+    if (price < 1500) {
+      this.range = 'Low';
+    } else if (price > 1500 && price < 3000) {
+      this.range = 'Mid';
+    } else {
+      this.range = 'High';
+    }
+
+    console.log(category);
+    console.log(this.range);
+
+    const url = `${this.baseUrl}${category}&${this.range}`;
+    return this.http.get(url);
   }
 }

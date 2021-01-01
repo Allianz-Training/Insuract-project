@@ -7,6 +7,43 @@ div {
   h1 {
     font-size: 2rem;
   }
+
+  .card {
+    width: 350px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+
+    img {
+      width: 50%;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px auto;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      padding-top: 10px;
+    }
+
+    p {
+      padding: 10px;
+    }
+
+    .strike {
+      text-decoration: line-through;
+      padding: 0;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
 }
 
 @media only screen and (max-width: 769px) {
@@ -15,6 +52,11 @@ div {
 
     h1 {
       font-size: 1.3rem !important;
+    }
+
+    .card {
+      padding: 5px;
+      border-radius: 0px;
     }
   }
 }
