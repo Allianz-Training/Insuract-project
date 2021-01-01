@@ -4,6 +4,7 @@ import { DefaultComponent } from './default/default.component';
 import { BrowserComponent } from './default/insurance/browser/browser.component';
 import { DetailComponent } from './default/insurance/detail/detail.component';
 import { InsuranceComponent } from './default/insurance/insurance.component';
+import { ProductNotFoundComponent } from './default/insurance/product-not-found/product-not-found.component';
 import { LoginComponent } from './default/login/login.component';
 import { RegisterComponent } from './default/register/register.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
@@ -39,6 +40,10 @@ const routes: Routes = [
         component: DetailComponent,
       },
     ],
+  },
+  {
+    path: 'error',
+    component: ProductNotFoundComponent,
   },
   { path: '**', component: PageNotFoundComponent },
 ];

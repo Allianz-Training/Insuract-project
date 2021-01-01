@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Insurance } from 'src/app/Insurance';
 import { ProductsService } from 'src/app/products.service';
 
@@ -11,7 +11,12 @@ import { ProductsService } from 'src/app/products.service';
 export class DetailComponent implements OnInit {
   insurance: any;
 
-  constructor(private _api: ProductsService, private route: ActivatedRoute) {
+  // tslint:disable-next-line: variable-name
+  constructor(
+    private _api: ProductsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.insurance = [];
   }
 
@@ -24,9 +29,14 @@ export class DetailComponent implements OnInit {
     const insuranceId = +this.route.snapshot.paramMap.get('id')!;
     const promise = this._api.getInsuranceById(insuranceId).toPromise();
 
-    promise.then((data) => {
-      this.insurance = data;
-      console.warn(`recieved params id '${insuranceId}' from ActivatedRoute`);
-    });
+    promise
+      .then((data) => {
+        this.insurance = data;
+        console.warn(`recieved params id '${insuranceId}' from ActivatedRoute`);
+      })
+      .catch((error) => {
+        console.warn(error.status);
+        this.router.navigate(['error']);
+      });
   }
 }

@@ -15,6 +15,7 @@ import { InsuranceComponent } from './insurance/insurance.component';
 import { BrowserComponent } from './insurance/browser/browser.component';
 import { DetailComponent } from './insurance/detail/detail.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { ProductNotFoundComponent } from './insurance/product-not-found/product-not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AgGridModule } from 'ag-grid-angular';
     InsuranceComponent,
     BrowserComponent,
     DetailComponent,
+    ProductNotFoundComponent,
   ],
   imports: [
     CommonModule,
