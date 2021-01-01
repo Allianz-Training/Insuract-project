@@ -20,4 +20,8 @@ export class ProductsService {
     const url = `${this.baseUrl}id/${id}`;
     return this.http.get(url);
   }
+
+  public filterMinInsurance(category: string, price: number): Observable<any> {
+    const url = `${this.baseUrl}product/${category}`
+  }
 }

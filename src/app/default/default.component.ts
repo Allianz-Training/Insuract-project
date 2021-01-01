@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as $ from 'jquery';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-default',
@@ -11,7 +12,7 @@ export class DefaultComponent implements OnInit {
   insurance: string = '';
   price: number = 1000;
 
-  constructor() {}
+  constructor(private _api: ProductsService) {}
 
   ngOnInit(): void {
     $(window).on('scroll', () => {
@@ -35,5 +36,7 @@ export class DefaultComponent implements OnInit {
     this.insurance = c;
   }
 
-  updateResult() {}
+  updateResult() {
+    // const promise = this._api.
+  }
 }
