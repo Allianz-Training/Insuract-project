@@ -8,16 +8,16 @@ import { Insurance } from './Insurance';
   providedIn: 'root',
 })
 export class ProductsService {
-  InsuranceAPI = 'http://localhost:8080/product/';
+  baseUrl = 'http://localhost:8080/product/';
 
   constructor(private http: HttpClient) {}
 
   public getInsurance(): Observable<Insurance[]> {
-    return this.http.get<Insurance[]>(this.InsuranceAPI);
+    return this.http.get<Insurance[]>(this.baseUrl);
   }
 
   public getInsuranceById(id: any): Observable<any> {
-    const url = `${this.InsuranceAPI}id/${id}`;
+    const url = `${this.baseUrl}id/${id}`;
     return this.http.get(url);
   }
 }

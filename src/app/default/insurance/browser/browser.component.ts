@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { type } from 'jquery';
 import { ProductsService } from 'src/app/products.service';
 
 @Component({
@@ -14,7 +12,8 @@ export class BrowserComponent implements OnInit {
   public columnDefs: any;
   public sortingOrder: any;
 
-  constructor(private http: HttpClient) {
+  // tslint:disable-next-line: variable-name
+  constructor(private _api: ProductsService) {
     this.columnDefs = [
       {
         headerName: '',
@@ -120,7 +119,7 @@ export class BrowserComponent implements OnInit {
   onGridReady(params: any): void {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.http.get('http://localhost:8080/product/').subscribe((data) => {
+    this._api.getInsurance().subscribe((data) => {
       console.log(data);
       params.api.setRowData(data);
     });
