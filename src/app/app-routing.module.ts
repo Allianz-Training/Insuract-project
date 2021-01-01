@@ -6,11 +6,16 @@ import { DetailComponent } from './default/insurance/detail/detail.component';
 import { InsuranceComponent } from './default/insurance/insurance.component';
 import { LoginComponent } from './default/login/login.component';
 import { RegisterComponent } from './default/register/register.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
     component: DefaultComponent,
   },
   {
@@ -35,6 +40,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
