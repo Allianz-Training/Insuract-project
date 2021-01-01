@@ -6,6 +6,8 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { UsersService } from 'src/app/users.service';
+import { User } from 'src/app/user'
+import { uniqueSort } from 'jquery';
 
 @Component({
   selector: 'app-register',
@@ -16,9 +18,9 @@ export class RegisterComponent implements OnInit {
   accountForm: FormGroup;
   personalForm: FormGroup;
 
-  userAvailable:boolean | undefined;
-  emailAvailable:boolean | undefined;
-  citizenIdAvailable:boolean | undefined;
+  userAvailable: boolean | undefined;
+  emailAvailable: boolean | undefined;
+  citizenIdAvailable: boolean | undefined;
 
   constructor(private fb: FormBuilder, private service: UsersService) {
     this.accountForm = this.fb.group({
@@ -61,7 +63,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
 
 
@@ -70,13 +72,13 @@ export class RegisterComponent implements OnInit {
     await this.service.validateUser(this.accountForm.get('username')?.value).then(
       response => {
         console.log(response.status)
-        if(response.ok){
+        if (response.ok) {
           console.log("OK")
           this.userAvailable = true
         }
       }
-    ).catch( err => {
-      console.error("Dup",err)
+    ).catch(err => {
+      console.error("Dup", err)
       this.userAvailable = false;
     })
     console.log(this.userAvailable)
@@ -86,13 +88,13 @@ export class RegisterComponent implements OnInit {
     await this.service.validateEmail(this.accountForm.get('email')?.value).then(
       response => {
         console.log(response.status)
-        if(response.ok){
+        if (response.ok) {
           console.log("OK")
           this.emailAvailable = true
         }
       }
-    ).catch( err => {
-      console.error("Dup",err)
+    ).catch(err => {
+      console.error("Dup", err)
       this.emailAvailable = false;
     })
     console.log(this.emailAvailable)
@@ -102,13 +104,13 @@ export class RegisterComponent implements OnInit {
     await this.service.validateCitizenId(this.personalForm.get('citizenID')?.value).then(
       response => {
         console.log(response.status)
-        if(response.ok){
+        if (response.ok) {
           console.log("OK")
           this.citizenIdAvailable = true
         }
       }
-    ).catch( err => {
-      console.error("Dup",err)
+    ).catch(err => {
+      console.error("Dup", err)
       this.citizenIdAvailable = false;
     })
     console.log(this.citizenIdAvailable)
@@ -117,5 +119,21 @@ export class RegisterComponent implements OnInit {
   submitforms(): void {
     console.warn(this.accountForm.value);
     console.warn(this.personalForm.value);
+
+    let user: User = {
+      username: this.accountForm.get('username')?.value,
+      password: this.accountForm.get('password')?.value,
+      firstname: this.personalForm.get('firstname')?.value,
+      lastname: this.personalForm.get('lastname')?.value,
+      phoneNum: this.personalForm.get('telnum')?.value,
+      phoneNumAlt: this.personalForm.get('telnum2')?.value,
+      citizenId: this.personalForm.get('citizenID')?.value,
+      email: this.accountForm.get('email')?.value
+    }
+    console.log(user)
+    this.service.register(user).subscribe((response) => {
+      console.log(response.status)
+    })
   }
 }
+
