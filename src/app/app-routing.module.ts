@@ -29,7 +29,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'reservation',
+    path: 'reservation/:id',
     component: ReservationComponent,
   },
   {

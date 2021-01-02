@@ -59,7 +59,13 @@
           <div class="input__row">
             <p>Date</p>
             <mat-form-field appearance="fill">
-              <input matInput placeholder="lastname" value="edit" />
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker controlType="date"></mat-datepicker>
             </mat-form-field>
           </div>
 
@@ -83,14 +89,19 @@
       <div class="input__middle">
         <p>Insurance name</p>
         <mat-form-field appearance="fill">
-          <input matInput placeholder="lastname" value="edit" />
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.productName }}"
+            readonly
+          />
         </mat-form-field>
       </div>
 
       <div class="input__middle">
         <p>Payment type</p>
         <mat-form-field appearance="fill">
-          <select matNativeControl required>
+          <select matNativeControl [(ngModel)]="selectPayment">
             <option value="monthly">Monthly</option>
             <option value="trimester">Trimester</option>
             <option value="annual">Annaul</option>
@@ -98,10 +109,36 @@
         </mat-form-field>
       </div>
 
-      <div class="input__middle">
+      <div class="input__middle" *ngIf="selectPayment === 'monthly'">
         <p>Price (per month)</p>
         <mat-form-field appearance="fill">
-          <input matInput placeholder="lastname" value="1500" />
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.monthlyPayment }}"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle" *ngIf="selectPayment === 'trimester'">
+        <p>Price (per trimester)</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.trimesterPayment }}"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle" *ngIf="selectPayment === 'annual'">
+        <p>Price (per annual)</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.annualPayment }}"
+          />
         </mat-form-field>
       </div>
 
@@ -113,22 +150,33 @@
               <mat-panel-title>Insurance detail</mat-panel-title>
             </mat-expansion-panel-header>
 
-            <table>
+            <table *ngIf="insurance.productType === 'Health'">
               <tr>
                 <th>IPD</th>
-                <td>32000</td>
+                <td>{{ insurance.ipd }}</td>
               </tr>
               <tr>
                 <th>OPD</th>
-                <td>4000</td>
+                <td>{{ insurance.opd }}</td>
               </tr>
               <tr>
                 <th>Death coverage</th>
-                <td>1000000</td>
+                <td>{{ insurance.death }}</td>
               </tr>
               <tr>
                 <th>Room coverage</th>
-                <td>20000</td>
+                <td>{{ insurance.room }}</td>
+              </tr>
+            </table>
+
+            <table *ngIf="insurance.productType === 'Retirement'">
+              <tr>
+                <th>Retirement onetime payment</th>
+                <td>{{ insurance.retirementOneTime }}</td>
+              </tr>
+              <tr>
+                <th>Retirement monthly payment</th>
+                <td>{{ insurance.retirementMonthly }}</td>
               </tr>
             </table>
           </mat-expansion-panel>
