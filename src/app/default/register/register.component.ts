@@ -6,8 +6,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { UsersService } from 'src/app/users.service';
-import { User } from 'src/app/user'
-import { uniqueSort } from 'jquery';
+import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-register',
@@ -63,63 +62,67 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-
-
+  // tslint:disable-next-line: typedef
   public async validateUser() {
-    await this.service.validateUser(this.accountForm.get('username')?.value).then(
-      response => {
-        console.log(response.status)
+    await this.service
+      .validateUser(this.accountForm.get('username')?.value)
+      .then((response) => {
+        console.log(response.status);
         if (response.ok) {
-          console.log("OK")
-          this.userAvailable = true
+          console.log('OK');
+          this.userAvailable = true;
         }
-      }
-    ).catch(err => {
-      console.error("Dup", err)
-      this.userAvailable = false;
-    })
-    console.log(this.userAvailable)
+      })
+      .catch((err) => {
+        console.error('Dup', err);
+        this.userAvailable = false;
+      });
+    console.log(this.userAvailable);
   }
 
+  // tslint:disable-next-line: typedef
   public async validateEmail() {
-    await this.service.validateEmail(this.accountForm.get('email')?.value).then(
-      response => {
-        console.log(response.status)
+    await this.service
+      .validateEmail(this.accountForm.get('email')?.value)
+      .then((response) => {
+        console.log(response.status);
         if (response.ok) {
-          console.log("OK")
-          this.emailAvailable = true
+          console.log('OK');
+          this.emailAvailable = true;
         }
-      }
-    ).catch(err => {
-      console.error("Dup", err)
-      this.emailAvailable = false;
-    })
-    console.log(this.emailAvailable)
+      })
+      .catch((err) => {
+        console.error('Dup', err);
+        this.emailAvailable = false;
+      });
+    console.log(this.emailAvailable);
   }
 
+  // tslint:disable-next-line: typedef
   public async validateCitizenId() {
-    await this.service.validateCitizenId(this.personalForm.get('citizenID')?.value).then(
-      response => {
-        console.log(response.status)
+    await this.service
+      .validateCitizenId(this.personalForm.get('citizenID')?.value)
+      .then((response) => {
+        console.log(response.status);
         if (response.ok) {
-          console.log("OK")
-          this.citizenIdAvailable = true
+          console.log('OK');
+          this.citizenIdAvailable = true;
         }
-      }
-    ).catch(err => {
-      console.error("Dup", err)
-      this.citizenIdAvailable = false;
-    })
-    console.log(this.citizenIdAvailable)
+      })
+      .catch((err) => {
+        console.error('Dup', err);
+        this.citizenIdAvailable = false;
+      });
+    console.log(this.citizenIdAvailable);
   }
 
   submitforms(): void {
     console.warn(this.accountForm.value);
     console.warn(this.personalForm.value);
 
+    // tslint:disable-next-line: prefer-const
     let user: User = {
       username: this.accountForm.get('username')?.value,
       password: this.accountForm.get('password')?.value,
@@ -128,12 +131,11 @@ export class RegisterComponent implements OnInit {
       phoneNum: this.personalForm.get('telnum')?.value,
       phoneNumAlt: this.personalForm.get('telnum2')?.value,
       citizenId: this.personalForm.get('citizenID')?.value,
-      email: this.accountForm.get('email')?.value
-    }
-    console.log(user)
+      email: this.accountForm.get('email')?.value,
+    };
+    console.log(user);
     this.service.register(user).subscribe((response) => {
-      console.log(response.status)
-    })
+      console.log(response.status);
+    });
   }
 }
-
