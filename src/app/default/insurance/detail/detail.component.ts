@@ -24,6 +24,10 @@ export class DetailComponent implements OnInit {
     this.loadInsurance();
   }
 
+  gotoReserve(): void {
+    this.router.navigate([`reservation/${this.insurance.id}`]);
+  }
+
   loadInsurance(): void {
     // tslint:disable-next-line: no-non-null-assertion
     const insuranceId = +this.route.snapshot.paramMap.get('id')!;
