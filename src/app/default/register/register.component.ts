@@ -5,8 +5,8 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { UsersService } from 'src/app/users.service';
-import { User } from 'src/app/user';
+import { UsersService } from 'src/app/_services/users.service';
+import { User } from 'src/app/_types/user';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   citizenIdAvailable: boolean | undefined;
 
   constructor(private fb: FormBuilder, private service: UsersService) {
+    // tslint:disable-next-line: deprecation
     this.accountForm = this.fb.group(
       {
         username: ['', Validators.required],
@@ -67,7 +68,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  pwdConfirming(key: string, confirmationKey: string) {
+  pwdConfirming(key: string, confirmationKey: string): any {
     return (group: FormGroup) => {
       const input = group.controls[key];
       const confirmationInput = group.controls[confirmationKey];

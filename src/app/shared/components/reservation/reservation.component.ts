@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService } from 'src/app/products.service';
+import { ProductsService } from 'src/app/_services/products.service';
 
 @Component({
   selector: 'app-reservation',
