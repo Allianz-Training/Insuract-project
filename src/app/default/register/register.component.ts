@@ -22,12 +22,15 @@ export class RegisterComponent implements OnInit {
   citizenIdAvailable: boolean | undefined;
 
   constructor(private fb: FormBuilder, private service: UsersService) {
-    this.accountForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmpassword: ['', [Validators.required]],
-    });
+    this.accountForm = this.fb.group(
+      {
+        username: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmpassword: ['', [Validators.required]],
+      },
+      { validator: this.pwdConfirming('password', 'confirmpassword') }
+    );
 
     this.personalForm = this.fb.group({
       firstname: ['', Validators.required],
@@ -63,6 +66,16 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  pwdConfirming(key: string, confirmationKey: string) {
+    return (group: FormGroup) => {
+      const input = group.controls[key];
+      const confirmationInput = group.controls[confirmationKey];
+      return confirmationInput.setErrors(
+        input.value !== confirmationInput.value ? { notEquivalent: true } : null
+      );
+    };
+  }
 
   // tslint:disable-next-line: typedef
   public async validateUser() {
