@@ -22,15 +22,31 @@ export class AppPage {
 
   getStarted() {
     return element(
-      by.xpath(
-        '/html/body/app-root/app-default/header/nav/ul/li[3]/button/span[1]'
-      )
+      by.xpath('/html/body/app-root/app-default/header/nav/ul/li[3]/button')
     );
   }
-
   getInsurancePage() {
     return element(
       by.xpath('/html/body/app-root/app-default/header/nav/ul/li[2]/a')
+    );
+  }
+  getHome() {
+    return element(
+      by.xpath('/html/body/app-root/app-default/header/nav/ul/li[1]/a')
+    );
+  }
+  usernameTextBox() {
+    return element(
+      by.xpath(
+        '/html/body/app-root/app-login/section/div/div/div[1]/form/mat-form-field[1]/div/div[1]/div[3]/input'
+      )
+    );
+  }
+  passwordTextBox() {
+    return element(
+      by.xpath(
+        '/html/body/app-root/app-login/section/div/div/div[1]/form/mat-form-field[2]/div/div[1]/div[3]/input'
+      )
     );
   }
 }
