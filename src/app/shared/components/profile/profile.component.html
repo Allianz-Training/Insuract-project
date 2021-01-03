@@ -1,22 +1,112 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>
-  <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <p>
-    <strong>Role:</strong>
-    {{ currentUser.role }}
-  </p>
-</div>
+<app-header></app-header>
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px" class="page">
+    <div fxFlex="5%" id="vert_bar" fxHide.lt-lg></div>
+    <div fxFlex="95%" id="info">
+      <h1>Customer informations.</h1>
+      <mat-divider style="margin-bottom: 10px"> </mat-divider>
 
-<ng-template #loggedOut> Please login. </ng-template>
+      <h2 style="opacity: 0.7">Account informations.</h2>
+      <div class="info_row">
+        <div class="label"><b>Username</b></div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="username"
+            value="{{ userInfo.username }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="info_row">
+        <div class="label"><b>Email</b></div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="Email"
+            value="{{ userInfo.email }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-divider style="margin: 15px 0 10px 0"> </mat-divider>
+
+      <h2 style="opacity: 0.7">Customer's informations.</h2>
+
+      <div class="info_row">
+        <div class="label"><b>Firstname</b></div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="firstname"
+            value="{{ userInfo.firstname }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="info_row">
+        <div class="label"><b>Lastname </b></div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ userInfo.lastname }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="info_row">
+        <div class="label"><b>Citizen ID.</b></div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="citizen id"
+            value="{{ userInfo.citizenId }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="info_row">
+        <div class="label"><b>Telephone</b></div>
+
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="firstname"
+            value="{{ userInfo.phoneNum }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-divider style="margin: 15px 0 10px 0"> </mat-divider>
+
+      <h2 style="opacity: 0.7">Appointment list.</h2>
+
+      <div class="appointment_row">
+        <span>Appointment ref: 123478</span>
+        <span>status: ongoing</span>
+      </div>
+
+      <div class="appointment_row_finish">
+        <span>Appointment ref: 334324</span>
+        <span>status: completed</span>
+      </div>
+
+      <div class="appointment_row_finish">
+        <span>Appointment ref: 328238</span>
+        <span>status: completed</span>
+      </div>
+    </div>
+  </div>
+</div>

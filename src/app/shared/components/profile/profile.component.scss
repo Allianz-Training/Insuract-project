@@ -1,0 +1,64 @@
+.container {
+  padding: 0 300px;
+
+  .page {
+    margin-top: 80px;
+    margin-bottom: 100px;
+    background-color: rgba(199, 199, 199, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+    #vert_bar {
+      background-color: #007bff;
+      border-radius: 5px 0 0 5px;
+    }
+
+    #info {
+      padding: 20px;
+
+      .info_row {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+
+        .label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .edit {
+          display: flex;
+          justify-content: end;
+        }
+      }
+
+      .appointment_row {
+        background-color: #e9891b;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 10px;
+        padding-left: 20px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .appointment_row_finish {
+        background-color: #12b335;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 5px;
+        padding-left: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .container {
+    padding: 0;
+  }
+}

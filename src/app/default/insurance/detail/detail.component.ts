@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Insurance } from 'src/app/_interfaces/Insurance';
 import { ProductsService } from 'src/app/_services/products.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-detail',
@@ -11,13 +12,18 @@ import { ProductsService } from 'src/app/_services/products.service';
 export class DetailComponent implements OnInit {
   insurance: any;
 
+  isUser: any;
+
   // tslint:disable-next-line: variable-name
   constructor(
+    // tslint:disable-next-line: variable-name
     private _api: ProductsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private token: TokenStorageService
   ) {
     this.insurance = [];
+    this.isUser = '';
   }
 
   ngOnInit(): void {
@@ -25,7 +31,11 @@ export class DetailComponent implements OnInit {
   }
 
   gotoReserve(): void {
-    this.router.navigate([`reservation/${this.insurance.id}`]);
+    if (this.token.getToken()) {
+      this.router.navigate([`reservation/${this.insurance.id}`]);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 
   loadInsurance(): void {

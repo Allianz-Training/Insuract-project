@@ -142,14 +142,15 @@
                 *ngIf="
                   (accountForm.get('confirmpassword')!.errors?.required &&
                     accountForm.get('password')!.touched) ||
-                    (accountForm.get('confirmpassword')!.errors?.notEquivalent && accountForm.get('confirmpassword')!.touched);
+                    (accountForm.get('confirmpassword')!.errors
+                      ?.notEquivalent &&
+                      accountForm.get('confirmpassword')!.touched);
                   else confirmpassword__checked
                 "
                 >error</mat-icon
               >
 
-<!-- prettier-ignore-end -->
-
+              <!-- prettier-ignore-end -->
 
               <ng-template #confirmpassword__checked>
                 <!-- don't forget to fix ngIf -->

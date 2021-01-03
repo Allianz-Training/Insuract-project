@@ -15,21 +15,33 @@
           <div class="input__row">
             <p>Firstname</p>
             <mat-form-field appearance="fill">
-              <input matInput placeholder="firstname" value="Givenchy" />
+              <input
+                matInput
+                placeholder="firstname"
+                value="{{ userInfo.firstname }}"
+              />
             </mat-form-field>
           </div>
 
           <div class="input__row">
             <p>Lastname</p>
             <mat-form-field appearance="fill">
-              <input matInput placeholder="lastname" value="Towns" />
+              <input
+                matInput
+                placeholder="lastname"
+                value="{{ userInfo.lastname }}"
+              />
             </mat-form-field>
           </div>
 
           <div class="input__row">
             <p>Citizen ID.</p>
             <mat-form-field appearance="fill">
-              <input matInput placeholder="firstname" value="177984892846" />
+              <input
+                matInput
+                placeholder="citizen ID"
+                value="{{ userInfo.citizenId }}"
+              />
             </mat-form-field>
           </div>
         </div>
@@ -38,14 +50,22 @@
           <div class="input__row">
             <p>Telephone</p>
             <mat-form-field appearance="fill">
-              <input matInput placeholder="telephone" value="061-234-5678" />
+              <input
+                matInput
+                placeholder="telephone"
+                value="{{ userInfo.phoneNum }}"
+              />
             </mat-form-field>
           </div>
 
           <div class="input__row">
             <p>Email</p>
             <mat-form-field appearance="fill">
-              <input matInput placeholder="email" value="user@email.com" />
+              <input
+                matInput
+                placeholder="email"
+                value="{{ userInfo.email }}"
+              />
             </mat-form-field>
           </div>
         </div>
@@ -89,12 +109,7 @@
       <div class="input__middle">
         <p>Insurance name</p>
         <mat-form-field appearance="fill">
-          <input
-            matInput
-            placeholder="lastname"
-            value="{{ insurance.productName }}"
-            readonly
-          />
+          <input matInput value="{{ insurance.productName }}" readonly />
         </mat-form-field>
       </div>
 
@@ -116,6 +131,7 @@
             matInput
             placeholder="lastname"
             value="{{ insurance.monthlyPayment }}"
+            readonly
           />
         </mat-form-field>
       </div>
@@ -127,6 +143,7 @@
             matInput
             placeholder="lastname"
             value="{{ insurance.trimesterPayment }}"
+            readonly
           />
         </mat-form-field>
       </div>
@@ -138,6 +155,7 @@
             matInput
             placeholder="lastname"
             value="{{ insurance.annualPayment }}"
+            readonly
           />
         </mat-form-field>
       </div>
