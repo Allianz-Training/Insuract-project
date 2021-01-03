@@ -70,6 +70,9 @@
             >
           </mat-form-field>
           <!-- PASSWORD INPUT END -->
+          <div id="warn" *ngIf="isLoginFailed">
+            invalid username or password, please try again.
+          </div>
           <button
             mat-raised-button
             color="primary"

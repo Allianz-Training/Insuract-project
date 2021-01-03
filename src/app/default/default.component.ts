@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as $ from 'jquery';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../_services/products.service';
 
 @Component({
   selector: 'app-default',

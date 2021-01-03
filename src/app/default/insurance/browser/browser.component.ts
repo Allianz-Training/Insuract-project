@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/products.service';
+import { ProductsService } from 'src/app/_services/products.service';
 
 @Component({
   selector: 'app-browser',
@@ -159,8 +159,31 @@ export class BrowserComponent implements OnInit {
   //   }
   // }
 
-  // changeType(newValue: string): void {
-  //   insuranceType = newValue;
-  //   this.gridApi.onFilterChanged();
-  // }
+  changeType(newValue: string): void {
+    selectType = newValue;
+    console.log(selectType);
+    this.gridApi.onFilterChanged();
+  }
+
+  isExternalFilterPresent(): any {
+    let externalFilter;
+    if (selectType !== 'all ') {
+      externalFilter = true;
+    }
+
+    return externalFilter;
+  }
+
+  doesExternalFilterPass(node: any): any {
+    switch (selectType) {
+      case 'Health':
+        return (node.data.productType = 'Health');
+      case 'Retirement':
+        return (node.data.productType = 'Retirement');
+      default:
+        return true;
+    }
+  }
 }
+
+let selectType: any = 'all';

@@ -1,31 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Insurance } from 'src/app/_interfaces/Insurance';
 import { ProductsService } from 'src/app/_services/products.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
+  selector: 'app-reservation',
+  templateUrl: './reservation.component.html',
+  styleUrls: ['./reservation.component.scss'],
 })
-export class DetailComponent implements OnInit {
+export class ReservationComponent implements OnInit {
   insurance: any;
+  selectPayment = 'monthly';
 
-  // tslint:disable-next-line: variable-name
+  date: any;
+
   constructor(
+    private fb: FormBuilder,
+    // tslint:disable-next-line: variable-name
     private _api: ProductsService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.insurance = [];
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadInsurance();
-  }
-
-  gotoReserve(): void {
-    this.router.navigate([`reservation/${this.insurance.id}`]);
   }
 
   loadInsurance(): void {

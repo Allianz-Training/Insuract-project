@@ -1,0 +1,190 @@
+<app-header></app-header>
+<div class="container">
+  <div class="page">
+    <h1>Appointment query</h1>
+    <mat-divider> </mat-divider>
+    <div class="customer">
+      <h2>Customer detail</h2>
+      <div
+        fxLayout="row"
+        fxLayout.lt-lg="column"
+        fxLayoutAlign="start"
+        fxLayoutGap="10px"
+      >
+        <div fxFlex="50">
+          <div class="input__row">
+            <p>Firstname</p>
+            <mat-form-field appearance="fill">
+              <input matInput placeholder="firstname" value="Givenchy" />
+            </mat-form-field>
+          </div>
+
+          <div class="input__row">
+            <p>Lastname</p>
+            <mat-form-field appearance="fill">
+              <input matInput placeholder="lastname" value="Towns" />
+            </mat-form-field>
+          </div>
+
+          <div class="input__row">
+            <p>Citizen ID.</p>
+            <mat-form-field appearance="fill">
+              <input matInput placeholder="firstname" value="177984892846" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div fxFlex="50">
+          <div class="input__row">
+            <p>Telephone</p>
+            <mat-form-field appearance="fill">
+              <input matInput placeholder="telephone" value="061-234-5678" />
+            </mat-form-field>
+          </div>
+
+          <div class="input__row">
+            <p>Email</p>
+            <mat-form-field appearance="fill">
+              <input matInput placeholder="email" value="user@email.com" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-divider> </mat-divider>
+    <div class="appointment">
+      <h2>Appointment information</h2>
+      <div>
+        <div>
+          <div class="input__row">
+            <p>Date</p>
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker" />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker controlType="date"></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="input__row">
+            <p>Location</p>
+            <mat-form-field appearance="fill">
+              <textarea matInput placeholder="Address"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-divider> </mat-divider>
+
+    <div class="insurance">
+      <h2>Selected insurance's information</h2>
+      <div>
+        <img src="../../../../assets/allianz.png" alt="" />
+      </div>
+
+      <div class="input__middle">
+        <p>Insurance name</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.productName }}"
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle">
+        <p>Payment type</p>
+        <mat-form-field appearance="fill">
+          <select matNativeControl [(ngModel)]="selectPayment">
+            <option value="monthly">Monthly</option>
+            <option value="trimester">Trimester</option>
+            <option value="annual">Annaul</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle" *ngIf="selectPayment === 'monthly'">
+        <p>Price (per month)</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.monthlyPayment }}"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle" *ngIf="selectPayment === 'trimester'">
+        <p>Price (per trimester)</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.trimesterPayment }}"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle" *ngIf="selectPayment === 'annual'">
+        <p>Price (per annual)</p>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            placeholder="lastname"
+            value="{{ insurance.annualPayment }}"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="input__middle">
+        <p>Insurance details</p>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Insurance detail</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <table *ngIf="insurance.productType === 'Health'">
+              <tr>
+                <th>IPD</th>
+                <td>{{ insurance.ipd }}</td>
+              </tr>
+              <tr>
+                <th>OPD</th>
+                <td>{{ insurance.opd }}</td>
+              </tr>
+              <tr>
+                <th>Death coverage</th>
+                <td>{{ insurance.death }}</td>
+              </tr>
+              <tr>
+                <th>Room coverage</th>
+                <td>{{ insurance.room }}</td>
+              </tr>
+            </table>
+
+            <table *ngIf="insurance.productType === 'Retirement'">
+              <tr>
+                <th>Retirement onetime payment</th>
+                <td>{{ insurance.retirementOneTime }}</td>
+              </tr>
+              <tr>
+                <th>Retirement monthly payment</th>
+                <td>{{ insurance.retirementMonthly }}</td>
+              </tr>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <mat-divider> </mat-divider>
+
+    <button mat-raised-button color="primary">Confirm reservation</button>
+  </div>
+</div>
