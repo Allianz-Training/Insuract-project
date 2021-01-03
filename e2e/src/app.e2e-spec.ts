@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { browser } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -8,16 +8,32 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it('should display logo', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('Insuract app is running!');
+    expect(await page.getLogo()).toContain('Insuract');
   });
 
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+  it('should navigate to insurance product page', async () => {
+    await page.navigateTo();
+    page.getInsurancePage().click();
+    expect(browser.getCurrentUrl()).toContain('insurance');
+  });
+  // it('should navigate to login page', async () => {
+  //   await page.navigateTo();
+  //   page.getStarted().click();
+  //   expect(browser.getCurrentUrl()).toContain('login');
+  // });
+  it('should be able to register login information', () => {
+    page.navigateToRegistration();
+    page.usernameTextBox().sendKeys('user1');
+    expect(page.usernameTextBox().getText()).toContain('user1');
+    page.passwordTextBox().sendKeys('userpass');
+    expect(page.passwordTextBox().getText()).toContain('userpass');
+  });
+
+  it('should navigate back to Home Page', () => {
+    page.navigateToRegistration();
+    page.getHome().click();
+    expect(browser.getCurrentUrl()).toContain('home');
   });
 });
