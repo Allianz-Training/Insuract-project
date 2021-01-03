@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+          // Validators.pattern(/^-?(0|[1-9]\d*)?$/),
           Validators.minLength(10),
           Validators.maxLength(10),
         ],
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       telnum2: [
         '',
         [
-          Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+          // Validators.pattern(/^-?(0|[1-9]\d*)?$/),
           Validators.minLength(10),
           Validators.maxLength(10),
         ],

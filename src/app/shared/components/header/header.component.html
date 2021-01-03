@@ -16,9 +16,15 @@
           color="primary"
           class="responsive__button"
           [routerLink]="['/login']"
+          *ngIf="isUser == ''"
         >
           <mat-icon>account_circle</mat-icon>
         </button>
+      </li>
+      <li *ngIf="isUser">
+        <a [routerLink]="['/profile']" routerLinkActive="active">{{
+          isUser.username
+        }}</a>
       </li>
     </ul>
     <!-- if users >> change router link to profileComponent -->
@@ -28,6 +34,7 @@
       class="responsive__button"
       [routerLink]="['/login']"
       fxHide.gt-xs
+      *ngIf="isUser == ''"
     >
       <mat-icon>account_circle</mat-icon>
     </button>
@@ -42,17 +49,17 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>home</mat-icon>
-        <span>Homepage</span>
+      <button mat-menu-item [routerLink]="['/profile']" *ngIf="isUser">
+        <mat-icon>account_circle</mat-icon>
+        <span>welcome {{ isUser.username }}</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item [routerLink]="['/insurance']">
         <mat-icon>book</mat-icon>
         <span>Insurance</span>
       </button>
-      <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        <span>About-us</span>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Signout</span>
       </button>
     </mat-menu>
   </nav>

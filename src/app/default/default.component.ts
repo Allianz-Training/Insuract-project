@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import * as $ from 'jquery';
 import { ProductsService } from '../_services/products.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-default',
@@ -15,8 +16,14 @@ export class DefaultComponent implements OnInit {
 
   displayInsurance: any;
 
+  isUser: any;
+
   // tslint:disable-next-line: variable-name
-  constructor(private _api: ProductsService) {
+  constructor(
+    // tslint:disable-next-line: variable-name
+    private _api: ProductsService,
+    private token: TokenStorageService
+  ) {
     this.insurance = 'Health';
     this.price = 1000;
     this.priceCurrency = '';
@@ -31,6 +38,16 @@ export class DefaultComponent implements OnInit {
         $('nav').removeClass('black');
       }
     });
+
+    if (this.token.getToken()) {
+      this.isUser = this.token.getUser();
+      console.log(this.isUser);
+    }
+  }
+
+  logout(): void {
+    this.token.signOut();
+    window.location.reload();
   }
 
   formatLabel(value: number): any {

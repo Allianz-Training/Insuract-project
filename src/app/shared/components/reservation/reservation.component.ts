@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/_services/products.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-reservation',
@@ -14,16 +16,32 @@ export class ReservationComponent implements OnInit {
 
   date: any;
 
+  tokenUser: any;
+  userInfo: any;
+
   constructor(
     private fb: FormBuilder,
     // tslint:disable-next-line: variable-name
     private _api: ProductsService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    // tslint:disable-next-line: variable-name
+    private _user: UserService,
+    private token: TokenStorageService
+  ) {
+    this.insurance = '';
+    this.userInfo = '';
+  }
 
   ngOnInit(): void {
     this.loadInsurance();
+
+    if (this.token.getToken()) {
+      this.tokenUser = this.token.getUser();
+      this.loadUserInfo();
+    } else {
+      this.router.navigate(['404']);
+    }
   }
 
   loadInsurance(): void {
@@ -39,6 +57,21 @@ export class ReservationComponent implements OnInit {
       .catch((error) => {
         console.warn(error.status);
         this.router.navigate(['error']);
+      });
+  }
+
+  loadUserInfo(): void {
+    const userId = this.tokenUser.username;
+    const promise = this._user.getUser(userId).toPromise();
+
+    promise
+      .then((data) => {
+        this.userInfo = data;
+        console.warn('get userWithUsername');
+        console.log(this.userInfo);
+      })
+      .catch((error) => {
+        console.warn(error.status);
       });
   }
 }

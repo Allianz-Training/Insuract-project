@@ -14,12 +14,12 @@ export class TokenStorageService {
   }
 
   public saveToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    window.sessionStorage.removeItem(USER_KEY);
+    window.sessionStorage.setItem(USER_KEY, token);
   }
 
   public getToken(): string | null {
-    return window.sessionStorage.getItem(TOKEN_KEY);
+    return window.sessionStorage.getItem(USER_KEY);
   }
 
   public saveUser(user: any): void {

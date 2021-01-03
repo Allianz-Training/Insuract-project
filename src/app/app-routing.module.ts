@@ -8,6 +8,7 @@ import { ProductNotFoundComponent } from './default/insurance/product-not-found/
 import { LoginComponent } from './default/login/login.component';
 import { RegisterComponent } from './default/register/register.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { ProfileComponent } from './shared/components/profile/profile.component';
 import { ReservationComponent } from './shared/components/reservation/reservation.component';
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: 'reservation/:id',

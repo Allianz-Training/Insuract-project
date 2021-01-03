@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CarouselComponent,
     PageNotFoundComponent,
     ReservationComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CarouselComponent,
     PageNotFoundComponent,
     ReservationComponent,
+    ProfileComponent,
   ],
 })
 export class SharedModule {}
