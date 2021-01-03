@@ -26,8 +26,13 @@
           isUser.username
         }}</a>
       </li>
+      <li *ngIf="isUser">
+        <button mat-mini-fab (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </li>
     </ul>
-    <!-- if users >> change router link to profileComponent -->
+
     <button
       mat-mini-fab
       color="primary"
